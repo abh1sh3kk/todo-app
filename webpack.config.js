@@ -2,6 +2,17 @@ const path = require("path");
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
+  module: {
+    rules: [
+      { 
+        test: /\.(png|jpe?g|gif)$/i,
+        type: "asset/resource",
+        generator: {
+          filename: "images/[name].[ext]",
+        }
+      }
+    ]
+  },
   mode: "development",
 
   entry: {
@@ -26,18 +37,19 @@ module.exports = {
       // for css
       { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
 
-      // for images
-      {
-        test: /\.(png|jpe?g|gif)$/i,
-        use:
-          {
-            loader: "file-loader",
-            options: {
-              // name: "[name].[ext]",
-              outputPath: "imgs",
-            }
-          }
-      },
+     // for images
+      // {
+      //   test: /\.(png|jpe?g|gif)$/i,
+      //   use:
+      //     {
+      //       loader: "file-loader",
+      //       options: {
+      //         name: '[name].[ext]',
+      //         // outputPath: "images/",
+      //         publicPath: path.build(path.dirname(__dirname)),
+      //       }
+      //     }
+      // }, 
       {
         test: /\.html$/i,
         loader: "html-loader",
