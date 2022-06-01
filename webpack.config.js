@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: "development",
@@ -11,7 +12,6 @@ module.exports = {
     path: path.resolve(__dirname, "dist"),
     filename: "[name].bundle.js",
     assetModuleFilename: "[name][ext]",
-    //       clean: true,
   },
 
   devServer: {
@@ -29,12 +29,14 @@ module.exports = {
       // for images
       {
         test: /\.(png|jpe?g|gif)$/i,
-        loader: "file-loader",
-        options: {
-          name: "[name][hash].[ext]",
-          outputPath: "imgs"
-
-        },
+        use:
+          {
+            loader: "file-loader",
+            options: {
+              // name: "[name].[ext]",
+              outputPath: "imgs",
+            }
+          }
       },
       {
         test: /\.html$/i,
@@ -42,4 +44,13 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new HtmlWebpackPlugin({
+      inject: "body",
+      template: './src/index.html',
+      // minify: {
+      //   collapseWhitespace: true,
+      // }
+    })
+  ]
 };
