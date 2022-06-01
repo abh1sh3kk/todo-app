@@ -21,14 +21,25 @@ module.exports = {
     open: true,
   },
 
-
   module: {
     rules: [
       // for css
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.scss$/, use: ["style-loader", "css-loader", "sass-loader"] },
 
       // for images
-      { test: /\.(ico|svg|jpeg|jpg|gif)$/, type: "asset/resource" },
+      {
+        test: /\.(png|jpe?g|gif)$/i,
+        loader: "file-loader",
+        options: {
+          name: "[name][hash].[ext]",
+          outputPath: "imgs"
+
+        },
+      },
+      {
+        test: /\.html$/i,
+        loader: "html-loader",
+      },
     ],
   },
 };

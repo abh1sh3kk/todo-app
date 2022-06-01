@@ -5,13 +5,12 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>To-Do App</title>
-	<!-- <script src="../dist/main.bundle.js"></script> -->
-	<link rel="stylesheet" href="style.css">
+	<script src="./main.bundle.js"></script>
 </head>
 <body>
 	<header>
 	<nav>
-		<figure class="logo"><img src="./images/checked.png" alt=""></figure>
+		<figure class="logo"><img src="../src/images/checked.png" alt=""></figure>
 		<div class="logo-text">To-Do List</div>
 	</nav>	
 	</header>
@@ -20,9 +19,9 @@
 <aside>
 <section class="default-list">
 	<ul>
-		<li>All tasks</li>
-		<li>Today</li>
-		<li>Important</li>
+		<li><img src="../src/images/clipboard.png" alt=""> All tasks</li>
+		<li><img src="../src/images/calendar.png" alt=""> Today</li>
+		<li><img src="../src/images/star.png" alt=""> Important</li>
 	</ul>
 	<div class="projects">
 		<h3>My Projects</h3>
@@ -30,7 +29,7 @@
 			<li>Coding</li>
 			<li>Assignments</li>
 		</ul>
-		<div class="add-new-projects"><img src="" alt=""> Add new projects</div>
+		<div class="add-new-projects"><img src="../src/images/plus.png" alt=""> Add new projects</div>
 	</div>
 
 </section>
@@ -39,16 +38,21 @@
 	<h1>College</h1>
 <div class="lists">
 	<label for="task1">
-		<input type="checkbox" id="task1">
+		<input type="checkbox" id="task1" class="checkbox">
 		Solve coding problems
 	</label>
 	
 	<label for="task2">
-		<input type="checkbox" id="task2">
+		<input type="checkbox" id="task2" class="checkbox">
 		Celebrate
 	</label>
+	
+	<label for="task3">
+		<input type="checkbox" id="task3" class="checkbox">
+		Dance
+	</label>
 </div>
-	<div class="add-new-item"><img src="./images/plus.png" alt=""> Add new item</div>
+	<div class="add-new-item"><img src="../src/images/plus.png" alt=""> Add new item</div>
 </article>
 	</main>
 
