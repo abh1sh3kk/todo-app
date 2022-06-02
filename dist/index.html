@@ -1,62 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>To-Do App</title>
-</head>
-<body>
-	<header>
-	<nav>
-		<figure class="logo"><img src="checked.png" alt="" id="logo"></figure>
-		<div class="logo-text">To-Do List</div>
-	</nav>	
-	</header>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To-Do App</title>
+  </head>
+  <body>
+    <header>
+      <nav>
+        <figure class="logo">
+          <img src="checked.png" alt="" id="logo" />
+        </figure>
+        <div class="logo-text">To-Do List</div>
+      </nav>
+    </header>
 
-	<main>
-<aside>
-<section class="default-list">
-	<ul>
-		<li><img src="clipboard.png" alt=""> All tasks</li>
-		<li><img src="calendar.png" alt=""> Today</li>
-		<li><img src="star.png" alt=""> Important</li>
-	</ul>
-	<div class="projects">
-		<h3>My Projects</h3>
-		<ul>
-			<li>Coding</li>
-			<li>Assignments</li>
-		</ul>
-		<div class="add-new-projects"><img src="plus.png" alt=""> Add new projects</div>
-	</div>
+    <main>
+      <aside>
+        <section class="default-list">
+          <ul>
+            <li class="default-project" id="all_tasks" ><img src="clipboard.png" alt="" /> All tasks</li>
+            <li class="default-project" id="today"><img src="calendar.png" alt="" /> Today</li>
+            <li class="default-project" id="important"><img src="star.png" alt="" /> Important</li>
+          </ul>
+          <div class="projects">
+            <h3>My Projects</h3>
+            <ul>
+              <li class="custom-project">College</li>
+              <li class="custom-project">Assignments</li>
+            </ul>
+            <div class="add-new-projects">
+              <img src="plus.png" alt="" /> Add new projects
+            </div>
+          </div>
+        </section>
+      </aside>
+      <article>
+        <h1 class="project-heading">College</h1>
+        <div class="lists">
+          <label for="task1">
+            <div class="left-side">
+              <input type="checkbox" id="task1" class="checkbox" />
+              <span class="theTask">Solve coding problems</span>
+            </div>
+            <div class="right-side">
+              <span class="date">2075/01/03</span>
+              <span class="remove">✕</span>
+            </div>
+          </label>
 
-</section>
-</aside>
-<article>
-	<h1>College</h1>
-<div class="lists">
-	<label for="task1">
-		<input type="checkbox" id="task1" class="checkbox">
-		Solve coding problems
-	</label>
-	
-	<label for="task2">
-		<input type="checkbox" id="task2" class="checkbox">
-		Celebrate
-	</label>
-	
-	<label for="task3">
-		<input type="checkbox" id="task3" class="checkbox">
-		Dance
-	</label>
-</div>
-	<div class="add-new-item"><img src="plus.png" alt=""> Add new item</div>
-</article>
-	</main>
+          <label for="task2">
+            <div class="left-side">
+              <input type="checkbox" id="task2" class="checkbox" />
+              <span class="theTask">Celebrate</span>
+            </div>
+            <div class="right-side">
+              <span class="date">2075/01/03</span>
+              <span class="remove">✕</span>
+            </div>
+          </label>
 
-	<!-- <footer>
+          <label for="task3">
+            <div class="left-side">
+               <input type="checkbox" id="task3" class="checkbox" />
+              <span class="theTask">Dance</span>
+            </div>
+            <div class="right-side">
+              <span class="date">2075/01/03</span>
+              <span class="remove">✕</span>
+            </div>
+          </label>
+        </div>
+        <div class="add-new-item">
+          <img src="plus.png" alt="" /> Add new item
+        </div>
+      </article>
+    </main>
+
+    <!-- <footer>
 
 	</footer> -->
-<script defer src="main.bundle.js"></script></body>
+  <script defer src="main.bundle.js"></script></body>
 </html>

@@ -96,16 +96,13 @@ function updateSelectedProject(e) {
 function navigateDefault(e) {
 	switch(e.target.id) {
 		case "all_tasks": 
-			selectedProject.projectTitle = "All Tasks";
 			loadAllTasks();
 			console.log("I am all tasks");
 			break;
 		case "today": 
-			selectedProject.projectTitle = "Today";
 			console.log("I am today");
 			break;
 		case "important": 
-			selectedProject.projectTitle = "Important";
 			console.log("I am important");
 			break;
 		default: 
