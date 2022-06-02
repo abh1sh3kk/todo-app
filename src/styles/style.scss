@@ -107,9 +107,14 @@ body {
         margin-block: 2.5rem;
         border-radius: 1.5rem;
 
-        transition: all 0.2s ease-in-out;
+        // transition: all 0.2s ease-in-out;
       }
       li:hover {
+        // outline: 2px solid $accent-color;
+        background-color: #7679cf;
+        color: white;
+      }
+      .active {
         background-color: $accent-color;
         color: white;
       }
@@ -150,18 +155,31 @@ body {
       margin-top: 4rem;
 
       label {
-        display: block;
+        display: flex;
+        justify-content: space-between;
 
         margin-block: 0.5rem;
         padding: 1rem;
 
         border-radius: 1rem;
+
+        .date {
+          font-size: 1.4rem;
+          padding: 1rem;
+        }
+        .remove {
+          font-size: 1.3rem;
+          font-weight: 900;
+        }
       }
       label:hover {
         background-color: rgba(128, 128, 128, 0.089);
       }
       .checkbox {
         margin-right: 1rem;
+      }
+      .checkbox:checked{
+        transform: scale(1.5);
       }
       .artificial-checkbox img {
         display: none;

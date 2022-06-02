@@ -116,7 +116,7 @@ eval("\n\n/* istanbul ignore next  */\nfunction styleTagTransform(css, styleElem
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.scss */ \"./src/styles/style.scss\");\n\r\n\r\n\r\n\r\n\r\nconsole.log(\"I am here\")\n\n//# sourceURL=webpack://to-do-list-app/./src/script.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _styles_style_scss__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./styles/style.scss */ \"./src/styles/style.scss\");\n\r\n\r\nlet taskData = [\r\n\t{ \r\n\t\ttitle: \"Overall\",\r\n\t\ttasks: [\r\n\t\t\t{ \r\n\t\t\t\ttheTask: \"Solve Coding Problems\",\r\n\t\t\t\tcompleted: false\r\n\t\t\t},\r\n\t\t\t{ \r\n\t\t\t\ttheTask: \"Finish Assignments\",\r\n\t\t\t\tcompleted: false\r\n\t\t\t},\r\n\t\t\t{ \r\n\t\t\t\ttheTask: \"Cook chicken\",\r\n\t\t\t\tcompleted: true\r\n\t\t\t}\r\n\t\t]\r\n\t},\r\n\t{ \r\n\t\ttitle: \"Imaginary\",\r\n\t\ttasks: [\r\n\t\t\t{ \r\n\t\t\t\ttheTask: \"Make a beautiful girlfriend\",\r\n\t\t\t\tcompleted: true\r\n\t\t\t},\r\n\t\t\t{ \r\n\t\t\t\ttheTask: \"Win a lottery of $10 million\",\r\n\t\t\t\tcompleted: true\r\n\t\t\t},\r\n\t\t\t{ \r\n\t\t\t\ttheTask: \"Be like a genius\",\r\n\t\t\t\tcompleted: true\r\n\t\t\t}\r\n\t\t]\r\n\t},\r\n];\r\nconsole.log(taskData[1].tasks[1].theTask)\r\n\r\nlet selectedProject = taskData[1].title;\r\n\r\nconsole.log(selectedProject)\n\n//# sourceURL=webpack://to-do-list-app/./src/script.js?");
 
 /***/ })
 
