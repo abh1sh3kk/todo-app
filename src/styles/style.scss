@@ -76,6 +76,9 @@ body {
     .default-list li:hover {
       background-color: rgba(128, 128, 128, 0.108);
     }
+    .d-active {
+      background-color: rgba(128, 128, 128, 0.108);
+    }
     .default-list img {
       height: 2rem;
 
@@ -111,14 +114,14 @@ body {
       }
       li:hover {
         // outline: 2px solid $accent-color;
-        background-color: #7679cf;
+        background-color: $accent-color;
         color: white;
       }
       .active {
         background-color: $accent-color;
         color: white;
       }
-      .add-new-projects{
+      .add-new-projects {
         font-size: 1.8rem;
 
         margin-block: 2.5rem;
@@ -178,33 +181,31 @@ body {
       .checkbox {
         margin-right: 1rem;
       }
-      .checkbox:checked{
+      .checkbox:checked {
         transform: scale(1.5);
       }
       .artificial-checkbox img {
         display: none;
-	
+
         height: 1.5rem;
         width: 1.5rem;
       }
     }
-    .add-new-item{
-        font-size: 1.8rem;
+    .add-new-item {
+      font-size: 1.8rem;
 
-        margin: 2rem 0 3.5rem 1rem;
-		
+      margin: 2rem 0 3.5rem 1rem;
 
-
-        img {
-          height: 2rem;
-          margin-right: 0.8rem;
-        }
-
-        transition: all 0.8s ease-in-out;
+      img {
+        height: 2rem;
+        margin-right: 0.8rem;
       }
-      .add-new-item:hover {
-        transform: scale(1.06);
-      }
+
+      transition: all 0.8s ease-in-out;
+    }
+    .add-new-item:hover {
+      transform: scale(1.06);
+    }
   }
   footer {
     background-color: $accent-color;

@@ -1,9 +1,13 @@
 import "./styles/style.scss";
+import { createOneTask } from "./modules/createOneTask.js";
+
+
 let lists = document.querySelector(".lists");
 let labels = document.querySelectorAll("label");
 let defaultProjects = document.querySelectorAll(".default-project");
 let customProjects = document.querySelectorAll(".custom-project");
 let projectHeading = document.querySelector(".project-heading");
+let allProjects = document.querySelectorAll("li");
 
 let taskData = [
   {
@@ -47,27 +51,31 @@ let taskData = [
     ],
   },
 ];
-let selectedProject = taskData[1];
+let selectedProject = taskData[0];
 // -----------------------------------------------------------------------------------------
 
 renderTasks();
 
-
+console.log(allProjects)
 // ______________________________________________________________________________________
+
 
 
 //  FOR DEFAULT PROJECTS
 defaultProjects.forEach(defaultProject => { 
 	//  FOR DEFAULT PROJECTS
-	
 	defaultProject.addEventListener("click", (e)=>{
 		navigateDefault(e);
+		updateActiveButton(e);
 	});
 })
+
+
 	//  FOR CUSTOM PROJECTS
 customProjects.forEach(customProject => {
 	customProject.addEventListener("click", (e)=>{
 		updateSelectedProject(e);
+		updateActiveButton(e);
 		console.log(selectedProject.projectTitle);
 		renderTasks();
 	})
@@ -86,18 +94,39 @@ customProjects.forEach(customProject => {
 
 
 
+
+
+
+
+
+
+
+
 // -----------------------------------------------------------------------------------------
+function updateActiveButton(e) {
+	allProjects.forEach(eachProject=> {
+		eachProject.classList.remove("active");
+		eachProject.classList.remove("d-active");
+		
+	});
+	if(e.target.classList[0] == "default-project")
+		e.target.classList.add("d-active");
+	else
+		e.target.classList.add("active");
+}
+// C
 function updateSelectedProject(e) {
 	for (let project of taskData) {
 		if (e.target.textContent == project.projectTitle)
 			selectedProject = project;
 	}
 }
+
+// D
 function navigateDefault(e) {
 	switch(e.target.id) {
 		case "all_tasks": 
 			loadAllTasks();
-			console.log("I am all tasks");
 			break;
 		case "today": 
 			console.log("I am today");
@@ -110,9 +139,10 @@ function navigateDefault(e) {
 	}
 }
 
+// D
 function loadAllTasks() {
 	clearTasks();
-	focusActive();
+	projectHeading.textContent = "All tasks";
 
 	// entering inside the array of projects [{A}, {B}, {C}]
 	for (let [project_index, project_] of taskData.entries()) {
@@ -123,14 +153,15 @@ function loadAllTasks() {
 	  }
 	}
 }
+
+// CD
 function clearTasks() {
 	lists.textContent = "";
 }
+// CD
 function renderTasks() {
-	// console.log("Before clearing");
 	clearTasks();
-	// console.log("After clearing");
-	focusActive();
+	changeHeading();
 
 	// entering inside the array of projects [{A}, {B}, {C}]
 	 for (let [project_index, project_] of taskData.entries()) {
@@ -140,51 +171,14 @@ function renderTasks() {
 
 		// {title: "college", taskList: [{A}, {B}, {C}]}
 	    for (let [taskObj_index, taskObj_] of project_.taskList.entries()) {
-	//       console.log(project_index, taskObj_index, taskObj_.theTask, taskObj_.dueDate);
 	      lists.appendChild(createOneTask(project_index, taskObj_index, taskObj_.theTask, taskObj_.dueDate));
 	    }
 	  }
 	}
 	 
 }
-function focusActive() {
+
+// CD
+function changeHeading() {
 	projectHeading.textContent = selectedProject.projectTitle;
-	
-}
-function createOneTask(projectIndex__, taskIndex__, taskReceived, dateReceived) {
-  let taskRow = document.createElement("label");
-//   taskRow.setAttribute("for", `task${taskIndex__ + 1}`);
-
-  let leftSide = document.createElement("div");
-  leftSide.classList.add("left-side");
-  taskRow.appendChild(leftSide);
-
-
-  let checkBox = document.createElement("input");
-  checkBox.setAttribute("type", "checkbox");
-//   checkBox.setAttribute("id", `task${taskIndex__ + 1}`);
-  checkBox.classList.add("checkbox");
-  leftSide.appendChild(checkBox);
-
-  let theTask_ = document.createElement("span");
-  theTask_.classList.add("theTask");
-  theTask_.textContent = taskReceived;
-  leftSide.appendChild(theTask_);
-
-  let rightSide = document.createElement("div");
-  rightSide.classList.add("right-side");  
-  taskRow.appendChild(rightSide);
-
-  let date = document.createElement("span");
-  date.classList.add("date");
-  date.textContent = dateReceived;
-  rightSide.appendChild(date);
-
-  let remove = document.createElement("span");
-  remove.classList.add("remove");
-  remove.textContent = "✕";
-  rightSide.appendChild(remove);
-
-  return taskRow;
-
-}
+}		
