@@ -22,9 +22,10 @@ export function createOneTask(projectIndex__, taskIndex__, taskReceived, dateRec
   rightSide.classList.add("right-side");  
   taskRow.appendChild(rightSide);
 
-  let date = document.createElement("span");
+  let date = document.createElement("input");
   date.classList.add("date");
-  date.textContent = dateReceived;
+  date.setAttribute("type", "date");
+  // date.textContent = dateReceived;
   rightSide.appendChild(date);
 
   let remove = document.createElement("span");
