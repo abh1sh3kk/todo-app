@@ -18,7 +18,7 @@ $footer-height: 0px;
   box-sizing: border-box;
   list-style-type: none;
   user-select: none;
-  //   outline: 1px solid green;
+    // outline: 1px solid green;
 }
 @mixin white-containers {
   -webkit-box-shadow: 1px 1px 16px 3px rgba(0, 0, 0, 0.09);
@@ -167,16 +167,22 @@ body {
         border-radius: 1rem;
 
         .date {
-          font-size: 1.4rem;
-          padding: 1rem;
+          font-size: 1.2rem;
+          padding: 0.5rem 1rem;
+          background-color: #f2f1f1;
+          border-radius: 0.8rem;
+          letter-spacing: 0.02rem;
+
         }
         .remove {
           font-size: 1.3rem;
           font-weight: 900;
+          padding: 1rem;
         }
       }
-      label:hover {
+      label:hover, .checkbox:hover {
         background-color: rgba(128, 128, 128, 0.089);
+        cursor: pointer;
       }
       .checkbox {
         margin-right: 1rem;
