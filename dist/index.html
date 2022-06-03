@@ -6,7 +6,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>To-Do App</title>
   </head>
+
+
   <body>
+
+          <!-- NAV BAR -->
+
     <header>
       <nav>
         <figure class="logo">
@@ -16,13 +21,18 @@
       </nav>
     </header>
 
+
+              <!-- MAIN SECTION -->
     <main>
+
+            <!-- SIDEBAR -->
+
       <aside>
         <section class="default-list">
           <ul>
             <li class="default-project" id="all_tasks" ><img src="clipboard.png" alt="" /> All tasks</li>
             <li class="default-project" id="today"><img src="calendar.png" alt="" /> Today</li>
-            <li class="default-project" id="important"><img src="star.png" alt="" /> Important</li>
+            <li class="default-project" id="important"><img src="star.png" alt="" /><span class="important-text">Important</span></li>
           </ul>
           <div class="projects">
             <h3>My Projects</h3>
@@ -36,9 +46,19 @@
           </div>
         </section>
       </aside>
+
+
+            <!-- ACTUAL TASKS -->
       <article>
+
         <h1 class="project-heading">College</h1>
+
+
         <div class="lists">
+
+
+
+          <!-- TASK 1 -->
           <label for="task1">
             <div class="left-side">
               <input type="checkbox" id="task1" class="checkbox" />
@@ -50,6 +70,9 @@
             </div>
           </label>
 
+
+        
+          <!-- TASK 2 -->
           <label for="task2">
             <div class="left-side">
               <input type="checkbox" id="task2" class="checkbox" />
@@ -61,6 +84,9 @@
             </div>
           </label>
 
+
+
+          <!-- TASK 3 -->
           <label for="task3">
             <div class="left-side">
                <input type="checkbox" id="task3" class="checkbox" />
@@ -71,10 +97,26 @@
               <span class="remove">✕</span>
             </div>
           </label>
+
+
+
+
         </div>
+
+        <!-- ADD NEW ITEM -->
         <div class="add-new-item">
           <img src="plus.png" alt="" /> Add new item
         </div>
+
+
+        <!-- FORM FOR TASK  -->
+        <div class="insert-new-task">
+          <input type="text">
+
+        </div>
+
+
+
       </article>
     </main>
 
