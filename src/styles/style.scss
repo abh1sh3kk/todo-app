@@ -44,6 +44,10 @@ $footer-height: 0px;
   outline: none;
   border: 2px solid $accent-color;
 }
+@mixin enterButton {
+  background-color: $accent-color;
+  color: white;
+}
 // ---------------------------------------------------------------------------
 
 body {
@@ -152,89 +156,100 @@ body {
         color: white;
       }
     }
-
-    .add-new-projects {
-      position: relative;
-      font-size: 1.8rem;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      margin-block: 2.5rem;
-
-      text-align: center;
-
-      .add-new-projects__button {
-        // visibility: hidden;
-        display: flex;
-        align-items: center;
-        font-size: 1.7rem;
-        padding: 1rem 2rem;
-        border: none;
-        border-radius: 1.3rem;
-        background-color: transparent;
-        transition: 0.3s ease-in-out;
-        .add-new-projects__img {
-          height: 2rem;
-          margin-right: 0.8rem;
-        }
-      }
-      .add-new-projects__button:hover {
-        // background-color: $hover-color-grey;
-        transform: scale(1.1);
-        cursor: pointer;
-      }
-      .add-new-projects__form {
-        visibility: hidden;
-        position: absolute;
-        top: 0;
-        // outline: 2px solid red;
-        display: flex;
-
-        flex-direction: column;
-        gap: 1rem;
-        width: 100%;
-
-        .add-new-projects__input--text {
-          display: block;
-          @include input-area;
-          border: 2px solid transparent;
-          outline: 1px solid black;
-        }
-        .add-new-projects__input--text:focus {
-          @include input-area-focus;
-        }
-
-        .add-new-projects__two-buttons {
-          display: flex;
-          gap: 1rem;
-          .add-new-projects__form-buttons {
-            flex: 1;
-            padding: 1rem 1.5rem;
-            border: none;
-            border-radius: 1rem;
-          }
-
-          .add-new-projects__button--enter {
-            background-color: $accent-color;
-            color: white;
-          }
-          .add-new-projects__form-buttons:hover {
-            cursor: pointer;
-          }
-        }
-      }
-      // transition: all 0.5s ease-in-out;
-    }
     // .add-new-projects:hover {
     //   // transform: scale(1.06);
     // }
   }
 
+  // WHOLE SECTION
+  .add-new-projects,
+  .add-new-tasks {
+    position: relative;
+    font-size: 1.8rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-block: 2.5rem;
+
+    text-align: center;
+
+    // ADD NEW PROJECT/TASK BUTTON
+    .add-new-projects__button,
+    .add-new-tasks__button {
+      // visibility: hidden;
+      display: flex;
+      align-items: center;
+      font-size: 1.7rem;
+      padding: 1rem 2rem;
+      border: none;
+      border-radius: 1.3rem;
+  
+      background-color: transparent;
+      transition: 0.3s ease-in-out;
+      .add-new-projects__img,
+      .add-new-tasks__img {
+        height: 2rem;
+        margin-right: 0.8rem;
+      }
+    }
+    .add-new-projects__button:hover,
+    .add-new-tasks__button:hover {
+      // background-color: $hover-color-grey;
+      transform: scale(1.1);
+      cursor: pointer;
+    }
+
+    // FORM WHICH IS HIDDEN
+    .add-new-projects__form,
+    .add-new-tasks__form {
+      visibility: hidden;
+      position: absolute;
+      top: 0;
+      // outline: 2px solid red;
+      display: flex;
+      flex-direction: column;
+
+      gap: 2rem;
+      width: 100%;
+
+      .add-new-projects__input--text {
+        display: block;
+        @include input-area;
+        border: 2px solid transparent;
+        outline: 1px solid black;
+      }
+      .add-new-projects__input--text:focus {
+        @include input-area-focus;
+      }
+
+      .add-new-projects__two-buttons {
+        display: flex;
+        gap: 1.4rem;
+        height: 4rem;
+        font-size: 2rem;
+        .add-new-projects__form-buttons {
+          flex: 1;
+          padding: 1rem 1.5rem;
+          border: none;
+          border-radius: 1rem;
+        }
+
+        .add-new-projects__button--enter {
+          @include enterButton;
+        }
+        .add-new-projects__form-buttons:hover {
+          cursor: pointer;
+        }
+      }
+    }
+    // transition: all 0.5s ease-in-out;
+  }
+
   // main task section
 
-  article {
+  section {
     @include white-containers;
 
     flex: 1;
@@ -249,7 +264,7 @@ body {
     }
 
     // list area
-    .lists {
+    .task-lists {
       margin-top: 4rem;
 
       // position: relative;
@@ -307,66 +322,81 @@ body {
         width: 1.5rem;
       }
     }
-    .add-new-item {
-      font-size: 1.8rem;
 
-      position: relative;
-      margin: 2rem 0 3.5rem 1rem;
+    // ********************************  STOPPPP *******************************************
 
-      img {
-        height: 2rem;
-        margin-right: 0.8rem;
+    .add-new-tasks {
+      .add-new-tasks__form {
+        flex-direction: row;
+        gap: 0rem;
+        // visibility: hidden;
       }
 
-      transition: all 0.8s ease-in-out;
-    }
-    .add-new-item:hover {
-      // transform: scale(1.06);
-    }
-    .insert-new-task {
-      visibility: hidden;
-      position: absolute;
-      display: none;
-      top: 0;
-      width: 100%;
-      display: flex;
-      .input__text {
+      .add-new-tasks__button--enter {
+        @include enterButton;
+        // margin-inline: ;
+      }
+      .add-new-tasks__input--text {
         @include input-area;
+        margin-right: 0.5rem;
       }
-      .input__text:focus {
+      .add-new-tasks__input--text:focus {
         @include input-area-focus;
       }
-      button {
-        padding: 0.5rem 1rem;
+      // ADD NEW ITEMS
+      .add-new-tasks__buttons {
+        font-size: 1.5rem;
+
+        padding: 0.5rem 2rem;
         border: none;
         border-radius: 1rem;
-        height: 4rem;
         margin-inline: 0.5rem;
+
+        img {
+          height: 2rem;
+          margin-right: 0.8rem;
+        }
       }
-      .add {
-        padding: 0.5rem 2rem;
-        background-color: $accent-color;
-        color: white;
-      }
-      .add:hover {
-        background-color: $co-accent-color;
-      }
+
     }
   }
-  // footer {
-  //   background-color: $accent-color;
-  //   color: white;
-
-  //   font-size: 1.4rem;
-
-  //   height: $footer-height;
-
-  //   padding: 1.5rem;
-  //   text-align: center;
-
-  //   position: absolute;
-  //   bottom: 0;
-  //   left: 0;
-  //   right: 0;
-  // }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  // .add-new-tasks__form {
+  //   // visibility: hidden;
+  //   position: absolute;
+  //   display: none;
+  //   top: 0;
+  //   width: 100%;
+  //   display: flex;
+  //   button {
+  //     padding: 0.5rem 1rem;
+  //     border: none;
+  //     border-radius: 1rem;
+  //     height: 4rem;
+  //     margin-inline: 0.5rem;
+  //   }
+  //   // .add {
+  //   //   padding: 0.5rem 2rem;
+  //   //   background-color: $accent-color;
+  //   //   color: white;
+  //   // }
+  // }

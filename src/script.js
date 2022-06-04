@@ -7,7 +7,7 @@ let customProjects = document.querySelectorAll(".custom-project");
 let projectHeading = document.querySelector(".project-heading");
 let allProjects = document.querySelectorAll("li");
 
-let lists = document.querySelector(".lists");
+let lists = document.querySelector(".task-lists");
 let labels = document.querySelectorAll("label");
 
 
@@ -66,36 +66,52 @@ const cancelForProject = document.querySelector(".add-new-projects__button--canc
 const addProjectForm = document.querySelector(".add-new-projects__form")
 const addProjectInputArea = document.querySelector(".add-new-projects__input--text")
 
-
 addNewProjectButton.addEventListener("click", ()=>{ showProjectForm(); });
 cancelForProject.addEventListener("click", (e)=>{ e.preventDefault(); hideProjectForm(); });
 addProjectForm.addEventListener("submit", (e)=>{ performSubmit(e) });
-
 
 function performSubmit(e) {
 	e.preventDefault();
 	submitAction();
 	hideProjectForm();
+	hideTaskForm();
 }
 
 function showProjectForm() {
 	newProjectForm.style.visibility = "visible";
-	addNewProjectButton.style.visibility = "hidden";	
+	addNewProjectButton.style.visibility = "hidden";
+	addProjectInputArea.focus();	
 }
 function hideProjectForm(){
 	newProjectForm.style.visibility = "hidden";
 	addNewProjectButton.style.visibility = "visible";	
-}
+};
 function submitAction(){
-	console.log(addProjectInputArea.value);	
+	// console.log(addProjectInputArea.value);	
 }
 
 // -----------------------------------------------------------------------------------------
 		// TASK SIDE
-const addNewTaskButton = document.querySelector(".add-new-task-button");
-const newTaskForm = document.querySelector(".insert-new-task");
+const addNewTaskButton = document.querySelector(".add-new-tasks__button");
+const newTasksForm = document.querySelector(".add-new-tasks__form");
+const cancelForTask = document.querySelector(".add-new-tasks__button--cancel")
+const addTaskForm = document.querySelector(".add-new-tasks__form")
+const addTaskInputArea = document.querySelector(".add-new-tasks__input--text")
 
+addNewTaskButton.addEventListener("click", ()=>{ showTaskForm(); });
+cancelForTask.addEventListener("click", (e)=>{ e.preventDefault(); hideTaskForm(); });
+addTaskForm.addEventListener("submit", (e)=>{ performSubmit(e) });
 
+function showTaskForm() {
+	newTasksForm.style.visibility = "visible";
+	addNewTaskButton.style.visibility = "hidden";	
+	addTaskInputArea.focus();
+}
+function hideTaskForm(){
+	newTasksForm.style.visibility = "hidden";
+	addNewTaskButton.style.visibility = "visible";	
+}
+// -----------------------------------------------------------------------------------------
 
 
 
@@ -108,6 +124,10 @@ renderTasks();
 
 
 // ______________________________________________________________________________________
+
+
+
+
 
 
 
@@ -165,7 +185,6 @@ function updateActiveButton(e) {
 	else
 		e.target.classList.add("active");
 }
-// C
 function updateSelectedProject(e) {
 	for (let project of taskData) {
 		if (e.target.textContent == project.projectTitle)
@@ -173,7 +192,6 @@ function updateSelectedProject(e) {
 	}
 }
 
-// D
 function navigateDefault(e) {
 	switch(e.target.id) {
 		case "all_tasks": 
@@ -190,7 +208,6 @@ function navigateDefault(e) {
 	}
 }
 
-// D
 function loadAllTasks() {
 	clearTasks();
 	projectHeading.textContent = "All tasks";
@@ -205,11 +222,9 @@ function loadAllTasks() {
 	}
 }
 
-// CD
 function clearTasks() {
 	lists.textContent = "";
 }
-// CD
 function renderTasks() {
 	clearTasks();
 	changeHeading();
@@ -229,7 +244,6 @@ function renderTasks() {
 	 
 }
 
-// CD
 function changeHeading() {
 	projectHeading.textContent = selectedProject.projectTitle;
 }		

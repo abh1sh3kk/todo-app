@@ -12,14 +12,12 @@
 
     <header>
       <nav>
-
         <div class="nav__left-section">
           <figure class="nav-logo">
             <img src="./images/checked.png" alt="" class="nav-logo__img" />
           </figure>
           <div class="nav-text">To-Do List</div>
         </div>
-
 
         <div class="nav__right-section"></div>
       </nav>
@@ -30,19 +28,7 @@
       <!-- SIDEBAR -->
 
       <aside>
-        <section class="default-project-list">
-
-          <!-- default-list -> default-project-list -->
-          <!-- /section moved   -->
-
-          <!-- added new section with class = custom-project-list -->
-          <!-- or replaced div.project to section.customproject-list  -->
-          <!-- or lets say .project -> .custom-project-list -->
-        
-          <!-- input-area-add-new-project -> add-new-projects__form -->
-
-
-          <!-- default projects -->
+        <div class="default-project-list">
           <ul>
             <li class="default-project" id="all_tasks">
               <img src="../src/images/clipboard.png" alt="" /> All tasks
@@ -57,45 +43,61 @@
               >
             </li>
           </ul>
-        </section>
+        </div>
 
-        
-        <section class="custom-project-list">
+        <div class="custom-project-list">
           <!-- custom projects -->
-            <h3>My Projects</h3>
+          <h3>My Projects</h3>
 
-            <ul>
-              <li class="custom-project">College</li>
-              <li class="custom-project">Assignments</li>
-            </ul>
-</section>
+          <ul>
+            <li class="custom-project">College</li>
+            <li class="custom-project">Assignments</li>
+          </ul>
+        </div>
 
+        <div class="add-new-projects">
+          <!-- button -->
+          <button class="add-new-projects__button">
+            <img
+              src="../src/images/plus.png"
+              alt="logo"
+              class="add-new-projects__img"
+            />
+            <span class="add-new-projects__text">Add new projects</span>
+          </button>
 
-<section class="add-new-projects">
-              <!-- button -->
-              <button class="add-new-projects__button">
-                <img src="../src/images/plus.png" alt="logo" class="add-new-projects__img"/>
-                <span class="add-new-projects__text">Add new projects</span> 
+          <!-- input field -->
+          <form class="add-new-projects__form">
+            <input
+              type="text"
+              class="add-new-projects__input--text"
+              autofocus
+            />
+            <div class="add-new-projects__two-buttons">
+              <button
+                class="add-new-projects__form-buttons add-new-projects__button--enter"
+                type="submit"
+              >
+                Enter
               </button>
-
-              <!-- input field -->
-              <form class="add-new-projects__form">
-                <input type="text" class="add-new-projects__input--text" autofocus/>
-                <div class="add-new-projects__two-buttons">
-                  <button class="add-new-projects__form-buttons add-new-projects__button--enter" type="submit">Enter</button>
-                  <button class="add-new-projects__form-buttons add-new-projects__button--cancel" type="button">Cancel</button>
-                </div>
-              </form>
-</section>        
+              <button
+                class="add-new-projects__form-buttons add-new-projects__button--cancel"
+                type="button"
+              >
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
       </aside>
 
       <!-- ACTUAL TASKS -->
-      <article>
+      <section>
         <h1 class="project-heading">College</h1>
 
-        <div class="lists">
+        <div class="task-lists">
           <!-- TASK 1 -->
-          <label for="task1">
+          <label>
             <div class="left-side">
               <input type="checkbox" id="task1" class="checkbox" />
               <span class="theTask">Solve coding problems</span>
@@ -107,7 +109,7 @@
           </label>
 
           <!-- TASK 2 -->
-          <label for="task2">
+          <label>
             <div class="left-side">
               <input type="checkbox" id="task2" class="checkbox" />
               <span class="theTask">Celebrate</span>
@@ -119,7 +121,7 @@
           </label>
 
           <!-- TASK 3 -->
-          <label for="task3">
+          <label>
             <div class="left-side">
               <input type="checkbox" id="task3" class="checkbox" />
               <span class="theTask">Dance</span>
@@ -132,19 +134,36 @@
         </div>
 
         <!-- ADD NEW ITEM -->
-        <div class="add-new-item">
-          <div class="add-new-task-button">
-            <img src="../src/images/plus.png" alt="" /> Add new item
-          </div>
 
-          <!-- FORM FOR TASK  -->
-          <div class="insert-new-task">
-            <input type="text" class="input__text" />
-            <button class="add">Enter</button>
-            <button class="cancel">Cancel</button>
-          </div>
+        <div class="add-new-tasks">
+          <!-- Buttons -->
+          <button class="add-new-tasks__button">
+            <img
+              src="../src/images/plus.png"
+              alt="logo"
+              class="add-new-tasks__img"
+            />
+            <span class="add-new-tasks__text">Add new tasks</span>
+          </button>
+
+           <!-- FORM FOR TASK  -->
+          <form class="add-new-tasks__form">
+            <input type="text" class="add-new-tasks__input--text" />
+            <button class="add-new-tasks__button--enter add-new-tasks__buttons">Enter</button>
+            <button class="add-new-tasks__button--cancel add-new-tasks__buttons">Cancel</button>
+          </form>          
         </div>
-      </article>
+
+        <!-- <div class="add-new-item add-new-task">
+          <button class="add-new-task-button add-new-task__button">
+            <img src="../src/images/plus.png" alt="" />
+            Add new item
+          </button> -->
+
+         
+
+        </div>
+      </section>
     </main>
 
     <!-- <footer>
