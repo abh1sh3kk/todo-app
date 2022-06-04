@@ -8,12 +8,11 @@ $font-stack: roboto, sans-serif;
 $primary-color: white;
 $primary-text-color: #636363;
 $accent-color: #4044c9;
+$hover-color-grey: rgba(128, 128, 128, 0.108);
 $co-accent-color: #5b5eb0;
 $opposite-color: #c98440;
 $header-height: 60px;
 $footer-height: 0px;
-
-
 
 * {
   margin: 0;
@@ -47,9 +46,6 @@ $footer-height: 0px;
 }
 // ---------------------------------------------------------------------------
 
-
-
-
 body {
   font-family: $font-stack;
   font-size: 1.6rem;
@@ -59,13 +55,11 @@ body {
   min-width: 113rem;
   overflow: auto;
 
-
   // navigation bar
 
   nav {
     .nav__left-section {
       display: flex;
-
     }
     font-size: 2.2rem;
 
@@ -75,22 +69,18 @@ body {
     background-color: $accent-color;
     color: white;
 
-    .nav-logo__img{
+    .nav-logo__img {
       height: 2rem;
       margin-inline: 1.4rem;
     }
   }
 
-
   // everything below navigation
-
 
   main {
     display: flex;
     height: calc(100vh - #{$footer-height} - #{$header-height});
   }
-
-
 
   // sidebar
   aside {
@@ -101,9 +91,8 @@ body {
 
     padding: 3rem;
 
-
     // all, important, today
-    .default-list li {
+    .default-project-list li {
       cursor: pointer;
 
       margin-block: 1rem;
@@ -111,7 +100,7 @@ body {
 
       border-radius: 1rem;
     }
-    .default-list li:hover {
+    .default-project-list li:hover {
       background-color: rgba(128, 128, 128, 0.108);
     }
     .d-active {
@@ -119,7 +108,7 @@ body {
     }
 
     // icons for all, important, today
-    .default-list img {
+    .default-project-list img {
       height: 2rem;
 
       transform: translateY(4px);
@@ -127,7 +116,7 @@ body {
       margin-right: 1rem;
     }
 
-    .projects {
+    .custom-project-list {
       h3 {
         margin-block: 2rem;
 
@@ -162,80 +151,86 @@ body {
         background-color: $accent-color;
         color: white;
       }
-      .add-new-projects {
-        position: relative;
-        font-size: 1.8rem;
+    }
 
-        margin-block: 2.5rem;
+    .add-new-projects {
+      position: relative;
+      font-size: 1.8rem;
 
-        text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
 
-        img {
+      margin-block: 2.5rem;
+
+      text-align: center;
+
+      .add-new-projects__button {
+        // visibility: hidden;
+        display: flex;
+        align-items: center;
+        font-size: 1.7rem;
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 1.3rem;
+        background-color: transparent;
+        transition: 0.3s ease-in-out;
+        .add-new-projects__img {
           height: 2rem;
           margin-right: 0.8rem;
         }
-
-        transition: all 0.5s ease-in-out;
       }
-      .add-new-projects:hover {
-        // transform: scale(1.06);
+      .add-new-projects__button:hover {
+        // background-color: $hover-color-grey;
+        transform: scale(1.1);
+        cursor: pointer;
       }
-
-
-
-      .input-area-add-new-project {
+      .add-new-projects__form {
         visibility: hidden;
         position: absolute;
         top: 0;
         // outline: 2px solid red;
         display: flex;
-  
+
         flex-direction: column;
         gap: 1rem;
         width: 100%;
 
-        .add-new-project-button {
-          // display: none;
-        }
-
-
-        .input__project {
+        .add-new-projects__input--text {
           display: block;
           @include input-area;
           border: 2px solid transparent;
           outline: 1px solid black;
         }
-        .input__project:focus {
+        .add-new-projects__input--text:focus {
           @include input-area-focus;
         }
 
-
-        .buttons {
+        .add-new-projects__two-buttons {
           display: flex;
-          gap: 0.5rem;
-
-          button {
+          gap: 1rem;
+          .add-new-projects__form-buttons {
             flex: 1;
             padding: 1rem 1.5rem;
             border: none;
-            gap: 1rem;
             border-radius: 1rem;
-            // height: 3rem;
-            // padding: 0.5rem 2rem;
           }
-          .add_project {
+
+          .add-new-projects__button--enter {
             background-color: $accent-color;
             color: white;
           }
-          .add_project:hover, .cancel_project:hover {
+          .add-new-projects__form-buttons:hover {
             cursor: pointer;
           }
         }
       }
+      // transition: all 0.5s ease-in-out;
     }
+    // .add-new-projects:hover {
+    //   // transform: scale(1.06);
+    // }
   }
-
-
 
   // main task section
 

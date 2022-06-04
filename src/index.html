@@ -30,7 +30,18 @@
       <!-- SIDEBAR -->
 
       <aside>
-        <section class="default-list">
+        <section class="default-project-list">
+
+          <!-- default-list -> default-project-list -->
+          <!-- /section moved   -->
+
+          <!-- added new section with class = custom-project-list -->
+          <!-- or replaced div.project to section.customproject-list  -->
+          <!-- or lets say .project -> .custom-project-list -->
+        
+          <!-- input-area-add-new-project -> add-new-projects__form -->
+
+
           <!-- default projects -->
           <ul>
             <li class="default-project" id="all_tasks">
@@ -46,33 +57,36 @@
               >
             </li>
           </ul>
+        </section>
 
+        
+        <section class="custom-project-list">
           <!-- custom projects -->
-          <div class="projects">
             <h3>My Projects</h3>
 
             <ul>
               <li class="custom-project">College</li>
               <li class="custom-project">Assignments</li>
             </ul>
+</section>
 
-            <div class="add-new-projects">
+
+<section class="add-new-projects">
               <!-- button -->
-              <div class="add-new-project-button">
-                <img src="../src/images/plus.png" alt="" /> Add new projects
-              </div>
+              <button class="add-new-projects__button">
+                <img src="../src/images/plus.png" alt="logo" class="add-new-projects__img"/>
+                <span class="add-new-projects__text">Add new projects</span> 
+              </button>
 
               <!-- input field -->
-              <div class="input-area-add-new-project">
-                <input type="text" class="input__project" />
-                <div class="buttons">
-                  <button class="add_project">Enter</button>
-                  <button class="cancel_project">Cancel</button>
+              <form class="add-new-projects__form">
+                <input type="text" class="add-new-projects__input--text" autofocus/>
+                <div class="add-new-projects__two-buttons">
+                  <button class="add-new-projects__form-buttons add-new-projects__button--enter" type="submit">Enter</button>
+                  <button class="add-new-projects__form-buttons add-new-projects__button--cancel" type="button">Cancel</button>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
+              </form>
+</section>        
       </aside>
 
       <!-- ACTUAL TASKS -->

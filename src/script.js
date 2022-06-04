@@ -10,10 +10,7 @@ let allProjects = document.querySelectorAll("li");
 let lists = document.querySelector(".lists");
 let labels = document.querySelectorAll("label");
 
-const addNewProjectButton = document.querySelector(".add-new-project-button");
-const addNewTaskButton = document.querySelector(".add-new-task-button");
-const newTaskForm = document.querySelector(".insert-new-task");
-const newProjectForm = document.querySelector(".input-area-add-new-project");
+
 
 let taskData = [
   {
@@ -59,21 +56,52 @@ let taskData = [
 ];
 let selectedProject = taskData[0];
 // -----------------------------------------------------------------------------------------
-			// PLAYGROUND
+			// Add data 
+// -----------------------------------------------------------------------------------------
+		// PROJECT SIDE
+const addNewProjectButton = document.querySelector(".add-new-projects__button");
 
-addNewTaskButton.addEventListener("click", ()=>{
-	newTaskForm.visibility = "visible";
-	addNewTaskButton.visibility = "hidden";
-});
+const newProjectForm = document.querySelector(".add-new-projects__form");
+const cancelForProject = document.querySelector(".add-new-projects__button--cancel")
+const addProjectForm = document.querySelector(".add-new-projects__form")
+const addProjectInputArea = document.querySelector(".add-new-projects__input--text")
+
+
+addNewProjectButton.addEventListener("click", ()=>{ showProjectForm(); });
+cancelForProject.addEventListener("click", (e)=>{ e.preventDefault(); hideProjectForm(); });
+addProjectForm.addEventListener("submit", (e)=>{ performSubmit(e) });
+
+
+function performSubmit(e) {
+	e.preventDefault();
+	submitAction();
+	hideProjectForm();
+}
+
+function showProjectForm() {
+	newProjectForm.style.visibility = "visible";
+	addNewProjectButton.style.visibility = "hidden";	
+}
+function hideProjectForm(){
+	newProjectForm.style.visibility = "hidden";
+	addNewProjectButton.style.visibility = "visible";	
+}
+function submitAction(){
+	console.log(addProjectInputArea.value);	
+}
+
+// -----------------------------------------------------------------------------------------
+		// TASK SIDE
+const addNewTaskButton = document.querySelector(".add-new-task-button");
+const newTaskForm = document.querySelector(".insert-new-task");
+
+
+
+
 
 
 
 // -----------------------------------------------------------------------------------------
-
-
-
-
-
 
 // render tasks when page loads 
 renderTasks();
