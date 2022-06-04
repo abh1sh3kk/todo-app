@@ -7,43 +7,64 @@
     <title>To-Do App</title>
   </head>
 
-
   <body>
-
-          <!-- NAV BAR -->
+    <!-- NAV BAR -->
 
     <header>
       <nav>
-        <figure class="logo">
-          <img src="./images/checked.png" alt="" id="logo" />
-        </figure>
-        <div class="logo-text">To-Do List</div>
+
+        <div class="nav__left-section">
+          <figure class="nav-logo">
+            <img src="./images/checked.png" alt="" class="nav-logo__img" />
+          </figure>
+          <div class="nav-text">To-Do List</div>
+        </div>
+
+
+        <div class="nav__right-section"></div>
       </nav>
     </header>
 
-
-              <!-- MAIN SECTION -->
+    <!-- MAIN SECTION -->
     <main>
-
-            <!-- SIDEBAR -->
+      <!-- SIDEBAR -->
 
       <aside>
         <section class="default-list">
+          <!-- default projects -->
           <ul>
-            <li class="default-project" id="all_tasks" ><img src="../src/images/clipboard.png" alt="" /> All tasks</li>
-            <li class="default-project" id="today"><img src="../src/images/calendar.png" alt="" /> Today</li>
-            <li class="default-project" id="important"><img src="../src/images/star.png" alt="" /><span class="important-text">Important</span></li>
+            <li class="default-project" id="all_tasks">
+              <img src="../src/images/clipboard.png" alt="" /> All tasks
+            </li>
+            <li class="default-project" id="today">
+              <img src="../src/images/calendar.png" alt="" /> Today
+            </li>
+            <li class="default-project" id="important">
+              <img src="../src/images/star.png" alt="" /><span
+                class="important-text"
+                >Important</span
+              >
+            </li>
           </ul>
+
+          <!-- custom projects -->
           <div class="projects">
             <h3>My Projects</h3>
+
             <ul>
               <li class="custom-project">College</li>
               <li class="custom-project">Assignments</li>
             </ul>
+
             <div class="add-new-projects">
-              <img src="../src/images/plus.png" alt="" /> Add new projects
+              <!-- button -->
+              <div class="add-new-project-button">
+                <img src="../src/images/plus.png" alt="" /> Add new projects
+              </div>
+
+              <!-- input field -->
               <div class="input-area-add-new-project">
-                <input type="text" class="input__project">
+                <input type="text" class="input__project" />
                 <div class="buttons">
                   <button class="add_project">Enter</button>
                   <button class="cancel_project">Cancel</button>
@@ -54,17 +75,11 @@
         </section>
       </aside>
 
-
-            <!-- ACTUAL TASKS -->
+      <!-- ACTUAL TASKS -->
       <article>
-
         <h1 class="project-heading">College</h1>
 
-
         <div class="lists">
-
-
-
           <!-- TASK 1 -->
           <label for="task1">
             <div class="left-side">
@@ -77,8 +92,6 @@
             </div>
           </label>
 
-
-        
           <!-- TASK 2 -->
           <label for="task2">
             <div class="left-side">
@@ -86,17 +99,15 @@
               <span class="theTask">Celebrate</span>
             </div>
             <div class="right-side">
-              <input class="date" type="date"/>
+              <input class="date" type="date" />
               <span class="remove">✕</span>
             </div>
           </label>
 
-
-
           <!-- TASK 3 -->
           <label for="task3">
             <div class="left-side">
-               <input type="checkbox" id="task3" class="checkbox" />
+              <input type="checkbox" id="task3" class="checkbox" />
               <span class="theTask">Dance</span>
             </div>
             <div class="right-side">
@@ -104,29 +115,21 @@
               <span class="remove">✕</span>
             </div>
           </label>
-
-
-
-
         </div>
 
         <!-- ADD NEW ITEM -->
         <div class="add-new-item">
-          <img src="../src/images/plus.png" alt="" /> Add new item
-
+          <div class="add-new-task-button">
+            <img src="../src/images/plus.png" alt="" /> Add new item
+          </div>
 
           <!-- FORM FOR TASK  -->
           <div class="insert-new-task">
-            <input type="text" class="input__text">
+            <input type="text" class="input__text" />
             <button class="add">Enter</button>
             <button class="cancel">Cancel</button>
           </div>
         </div>
-
-
-
-
-
       </article>
     </main>
 

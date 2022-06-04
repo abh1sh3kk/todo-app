@@ -13,6 +13,8 @@ $opposite-color: #c98440;
 $header-height: 60px;
 $footer-height: 0px;
 
+
+
 * {
   margin: 0;
   padding: 0;
@@ -45,6 +47,9 @@ $footer-height: 0px;
 }
 // ---------------------------------------------------------------------------
 
+
+
+
 body {
   font-family: $font-stack;
   font-size: 1.6rem;
@@ -54,8 +59,14 @@ body {
   min-width: 113rem;
   overflow: auto;
 
+
+  // navigation bar
+
   nav {
-    display: flex;
+    .nav__left-section {
+      display: flex;
+
+    }
     font-size: 2.2rem;
 
     height: $header-height;
@@ -64,15 +75,24 @@ body {
     background-color: $accent-color;
     color: white;
 
-    .logo img {
+    .nav-logo__img{
       height: 2rem;
       margin-inline: 1.4rem;
     }
   }
+
+
+  // everything below navigation
+
+
   main {
     display: flex;
     height: calc(100vh - #{$footer-height} - #{$header-height});
   }
+
+
+
+  // sidebar
   aside {
     @include white-containers;
 
@@ -81,6 +101,8 @@ body {
 
     padding: 3rem;
 
+
+    // all, important, today
     .default-list li {
       cursor: pointer;
 
@@ -95,6 +117,8 @@ body {
     .d-active {
       background-color: rgba(128, 128, 128, 0.108);
     }
+
+    // icons for all, important, today
     .default-list img {
       height: 2rem;
 
@@ -102,6 +126,7 @@ body {
 
       margin-right: 1rem;
     }
+
     .projects {
       h3 {
         margin-block: 2rem;
@@ -156,7 +181,10 @@ body {
         // transform: scale(1.06);
       }
 
+
+
       .input-area-add-new-project {
+        visibility: hidden;
         position: absolute;
         top: 0;
         // outline: 2px solid red;
@@ -165,6 +193,12 @@ body {
         flex-direction: column;
         gap: 1rem;
         width: 100%;
+
+        .add-new-project-button {
+          // display: none;
+        }
+
+
         .input__project {
           display: block;
           @include input-area;
@@ -174,6 +208,8 @@ body {
         .input__project:focus {
           @include input-area-focus;
         }
+
+
         .buttons {
           display: flex;
           gap: 0.5rem;
@@ -191,10 +227,18 @@ body {
             background-color: $accent-color;
             color: white;
           }
+          .add_project:hover, .cancel_project:hover {
+            cursor: pointer;
+          }
         }
       }
     }
   }
+
+
+
+  // main task section
+
   article {
     @include white-containers;
 
@@ -208,6 +252,8 @@ body {
       margin-block: 2rem;
       padding-bottom: 0.8rem;
     }
+
+    // list area
     .lists {
       margin-top: 4rem;
 
@@ -283,6 +329,7 @@ body {
       // transform: scale(1.06);
     }
     .insert-new-task {
+      visibility: hidden;
       position: absolute;
       display: none;
       top: 0;
@@ -290,15 +337,6 @@ body {
       display: flex;
       .input__text {
         @include input-area;
-        // font-family: inherit;
-        // font-size: 1.5rem;
-        // height: 4rem;
-        // flex: 1;
-        // border-radius: 1rem;
-        // border: 1px solid black;
-        // padding: 1rem;
-        // letter-spacing: 0.06rem;
-        // color: #4f4f4f;
       }
       .input__text:focus {
         @include input-area-focus;

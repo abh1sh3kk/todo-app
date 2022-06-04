@@ -2,12 +2,18 @@ import "./styles/style.scss";
 import { createOneTask } from "./modules/createOneTask.js";
 
 
-let lists = document.querySelector(".lists");
-let labels = document.querySelectorAll("label");
 let defaultProjects = document.querySelectorAll(".default-project");
 let customProjects = document.querySelectorAll(".custom-project");
 let projectHeading = document.querySelector(".project-heading");
 let allProjects = document.querySelectorAll("li");
+
+let lists = document.querySelector(".lists");
+let labels = document.querySelectorAll("label");
+
+const addNewProjectButton = document.querySelector(".add-new-project-button");
+const addNewTaskButton = document.querySelector(".add-new-task-button");
+const newTaskForm = document.querySelector(".insert-new-task");
+const newProjectForm = document.querySelector(".input-area-add-new-project");
 
 let taskData = [
   {
@@ -53,15 +59,31 @@ let taskData = [
 ];
 let selectedProject = taskData[0];
 // -----------------------------------------------------------------------------------------
+			// PLAYGROUND
 
+addNewTaskButton.addEventListener("click", ()=>{
+	newTaskForm.visibility = "visible";
+	addNewTaskButton.visibility = "hidden";
+});
+
+
+
+// -----------------------------------------------------------------------------------------
+
+
+
+
+
+
+// render tasks when page loads 
 renderTasks();
 
-console.log(allProjects)
+
 // ______________________________________________________________________________________
 
 
 
-//  FOR DEFAULT PROJECTS
+// EventListener for default projects
 defaultProjects.forEach(defaultProject => { 
 	//  FOR DEFAULT PROJECTS
 	defaultProject.addEventListener("click", (e)=>{
@@ -71,7 +93,7 @@ defaultProjects.forEach(defaultProject => {
 })
 
 
-	//  FOR CUSTOM PROJECTS
+	//  EventListener FOR CUSTOM PROJECTS
 customProjects.forEach(customProject => {
 	customProject.addEventListener("click", (e)=>{
 		updateSelectedProject(e);
@@ -80,6 +102,7 @@ customProjects.forEach(customProject => {
 		renderTasks();
 	})
 })
+
 
 
 
