@@ -30,16 +30,16 @@
       <aside>
         <div class="default-project-list">
           <ul>
-            <li class="default-project" id="all_tasks">
-              <img src="../src/images/clipboard.png" alt="" /> All tasks
+            <li class="default-project" id="all-tasks">
+              <img src="../src/images/clipboard.png" alt="" id="all_tasks"/> All tasks
             </li>
             <li class="default-project" id="today">
               <img src="../src/images/calendar.png" alt="" /> Today
             </li>
-            <li class="default-project" id="important">
+            <li class="default-project" id="this-week">
               <img src="../src/images/star.png" alt="" /><span
-                class="important-text"
-                >Important</span
+                class="this-week"
+                >This Week</span
               >
             </li>
           </ul>
@@ -57,13 +57,13 @@
 
         <div class="add-new-projects">
           <!-- button -->
-          <button class="add-new-projects__button">
+          <button class="add-new-projects__button add-project">
             <img
               src="../src/images/plus.png"
               alt="logo"
-              class="add-new-projects__img"
+              class="add-new-projects__img add-project"
             />
-            <span class="add-new-projects__text">Add new projects</span>
+            <span class="add-new-projects__text add-project">Add new projects</span>
           </button>
 
           <!-- input field -->
@@ -75,13 +75,13 @@
             />
             <div class="add-new-projects__two-buttons">
               <button
-                class="add-new-projects__form-buttons add-new-projects__button--enter"
+                class="add-new-projects__form-buttons add-new-projects__button--enter submit-project"
                 type="submit"
               >
                 Enter
               </button>
               <button
-                class="add-new-projects__form-buttons add-new-projects__button--cancel"
+                class="add-new-projects__form-buttons add-new-projects__button--cancel cancel-button-project"
                 type="button"
               >
                 Cancel
@@ -109,7 +109,7 @@
           </label>
 
           <!-- TASK 2 -->
-          <label>
+          <!-- <label>
             <div class="left-side">
               <input type="checkbox" id="task2" class="checkbox" />
               <span class="theTask">Celebrate</span>
@@ -118,10 +118,10 @@
               <input class="date" type="date" />
               <span class="remove">✕</span>
             </div>
-          </label>
+          </label> -->
 
           <!-- TASK 3 -->
-          <label>
+          <!-- <label>
             <div class="left-side">
               <input type="checkbox" id="task3" class="checkbox" />
               <span class="theTask">Dance</span>
@@ -130,27 +130,27 @@
               <span class="date">2075/01/03</span>
               <span class="remove">✕</span>
             </div>
-          </label>
+          </label> -->
         </div>
 
         <!-- ADD NEW ITEM -->
 
         <div class="add-new-tasks">
           <!-- Buttons -->
-          <button class="add-new-tasks__button">
+          <button class="add-new-tasks__button add-task">
             <img
               src="../src/images/plus.png"
               alt="logo"
-              class="add-new-tasks__img"
+              class="add-new-tasks__img add-task"
             />
-            <span class="add-new-tasks__text">Add new tasks</span>
+            <span class="add-new-tasks__text add-task">Add new tasks</span>
           </button>
 
            <!-- FORM FOR TASK  -->
           <form class="add-new-tasks__form">
             <input type="text" class="add-new-tasks__input--text" />
-            <button class="add-new-tasks__button--enter add-new-tasks__buttons">Enter</button>
-            <button class="add-new-tasks__button--cancel add-new-tasks__buttons">Cancel</button>
+            <button class="add-new-tasks__button--enter add-new-tasks__buttons submit-task" type="submit">Enter</button>
+            <button class="add-new-tasks__button--cancel add-new-tasks__buttons cancel-button-task" type="button">Cancel</button>
           </form>          
         </div>
 
