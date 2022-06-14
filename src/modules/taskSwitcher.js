@@ -1,14 +1,14 @@
-import { TaskData } from "./taskData.js";
 import Task from "./task.js";
+import { TaskData } from "./taskData.js";
 
 const taskSwitcher = (() => {
-  //   activateSwitchingListeners();
 
   const listContainer = document.querySelector(".task-lists");
   const addButtonTask = document.querySelector(".add-new-tasks__button");
   const allProjects = document.querySelectorAll("li");
 
   // ------------------------------HELPER FUNCTIONS------------------------------
+
   const deSelectAll = () => {
     allProjects.forEach((eachProject) => {
       eachProject.classList.remove("active");
@@ -16,7 +16,7 @@ const taskSwitcher = (() => {
     });
   };
   const selectAllProject = () => {
-    document.querySelector("#all_tasks").classList.add("d-active");
+    document.querySelector("#all-tasks").classList.add("d-active");
   };
   const selectTodayProject = () => {
     document.querySelector("#today").classList.add("d-active");
@@ -27,52 +27,59 @@ const taskSwitcher = (() => {
 
   // ************************************************************************
 
-  const changeHeading = () => {
-    console.log(TaskData.selectedProject);
-  };
-
-  const hideAddTaskButton = () => {
-    addButtonTask.style.display = "none";
+  const performRituals = () => {
+    clearScreen();
+    changeHeading();
+    highlightSelectedProject();
+    hideAddTaskButton();
   };
   const clearScreen = () => {
     listContainer.innerHTML = "";
   };
-  const highlightSelectedProject = () => {
-    if (TaskData.selectedProject == "All Project") {
-      deSelectAll();
-      selectAllProject();
-    } else if (TaskData.selectedProject == "Today") {
-      deSelectAll();
-      selectTodayProject();
-    }
-    else if (TaskData.selectedProject == "This Week") {
-	deSelectAll();
-	selectThisWeekProject();
-    }
+  const changeHeading = () => {
+    document.querySelector(".project-heading").textContent =
+      TaskData.getSelectedProject();
   };
 
+  const highlightSelectedProject = () => {
+    deSelectAll();
+
+    switch (TaskData.selectedProject) {
+      case "All Tasks":
+        selectAllProject();
+        break;
+      case "Today":
+        selectTodayProject();
+        break;
+      case "This Week":
+        selectThisWeekProject();
+        break;
+    }
+    const hideAddTaskButton = () => {
+      addButtonTask.style.display = "none";
+    };
+    const showAddTaskButton = () => {
+      addButtonTask.style.display = "block";
+    };
+  };
+
+  const hideAddTaskButton = () =>  {
+      addButtonTask.style.display = "none";
+  }
+
+  const showAddTaskButton = () =>  {
+      addButtonTask.style.display = null  ;
+  }
+
   const loadAllTasks = () => {
-    /*
-		clear screen first
-
-		select taskList container
-		append all tasks one by one with loop
-
-		hide add task button
-
-		change selected project
-	*/
-    TaskData.setSelectedProject("All Project");
-
-    clearScreen();
-
-    changeHeading();
+    TaskData.setSelectedProject("All Tasks");
+    performRituals();
 
     for (let project_ of TaskData.data) {
       for (let [taskIndex, task_] of project_.taskList.entries()) {
         let newTask = new Task(
           project_.taskList[taskIndex].theTask,
-          project_.taskList[taskIndex].taskCompleted,
+          project_.taskList[taskIndex].isCompleted,
           project_.taskList[taskIndex].theDate
         );
         listContainer.appendChild(newTask.createOneTask());
@@ -85,19 +92,31 @@ const taskSwitcher = (() => {
   };
   const loadTodayTasks = () => {
     TaskData.setSelectedProject("Today");
-    highlightSelectedProject();
-    console.log("Today's tasks are loaded");
+    performRituals();
   };
   const loadThisWeekTasks = () => {
     TaskData.setSelectedProject("This Week");
-    highlightSelectedProject();
-    console.log("This week's tasks are loaded");
+    performRituals();
   };
   const loadCustomTasks = (e) => {
-    console.log(`${e.target.textContent}'s task is loaded.`);
-  };
-  // ------------------------------HELPER FUNCTIONS------------------------------
+    TaskData.setSelectedProject(e.target.textContent);
+    performRituals();
+    showAddTaskButton();
 
+    for (let [projectIndex, project_] of TaskData.data.entries()) {
+      if (project_.projectTitle == e.target.textContent) {
+        renderTasksOf(projectIndex);
+      }
+    }
+  };
+
+  // ------------------------------HELPER FUNCTIONS------------------------------
+  const renderTasksOf = (projectIndex) => {
+    for (let task_ of TaskData.data[projectIndex].taskList) {
+      let newTask = new Task(task_.theTask, task_.isCompleted, task_.dueDate);
+      listContainer.appendChild(newTask.createOneTask());
+    }
+  };
   const handleSwitchingClick = (e) => {
     if (e.target.getAttribute("id") == "all-tasks") loadAllTasks();
     else if (e.target.getAttribute("id") == "today") loadTodayTasks();
