@@ -70,6 +70,12 @@ const UI = (() => {
   };
 
   // ----------------------------------- HELPER FUNCTIONS--------------------------------
+  const appendToTaskList = (newTask) => {
+    listContainer.appendChild(newTask);
+  }
+  const appendToProjectList = (newProject) => {
+    customProjectList.appendChild(newProject);
+  }
 
   const clearProjects = () => {
     customProjectList.innerHTML = "";
@@ -78,15 +84,26 @@ const UI = (() => {
     document.querySelector(".task-lists").innerHTML = "";
   };
 
-  const updateTaskData = (newTask) => {
-    console.log("Hi")
+  const updateTaskData = (newValue, selector) => {
+    if (selector === "task") {
+      TaskData.addNewTask(newValue);
+    }
+    else if (selector === "project") {
+      TaskData.addNewProject(newValue);
+    }
+    else;
+    console.log(TaskData.data)
   }
 
   const activateEventListeners = () => {
+
+    // any click in body will be handled
     document.body.addEventListener("click", (e) => {
       handleClick(e);
     });
 
+
+    // any form submit will be handled
     for (let form of forms) {
       form.addEventListener("submit", (e) => {
         e.preventDefault();
@@ -98,39 +115,43 @@ const UI = (() => {
     if (e.target.classList.contains("add-task")) showTaskForm();
     else if (e.target.classList.contains("add-project")) showProjectForm();
     else if (e.target.classList.contains("cancel-button-task")) hideTaskForm();
-    else if (e.target.classList.contains("cancel-button-project"))
-      hideProjectForm();
+    else if (e.target.classList.contains("cancel-button-project")) hideProjectForm();
     else if (e.target.classList.contains("submit-task")) submitTask();
     else if (e.target.classList.contains("submit-project")) submitProject();
   };
 
   const submitTask = () => {
-    /*
-      update taskData
-      update localStorage
-      re-render page
-      
-    */
-
-    let newTask = new Task(addTaskInputArea.value);
-    updateTaskData(newTask);
-    // refreshLocalStorage();
-
+    if (addTaskInputArea.value.length > 1) {
+      let newTask = new Task(addTaskInputArea.value);
+      updateTaskData(newTask, "task");
+      refreshLocalStorage();
+      appendToTaskList(newTask.createOneTask());
+    }
     hideTaskForm();
   };
 
   const submitProject = () => {
-    console.log("Project Submitted");
+    /* 
+      database update 
+      local storage update
+      append project
+    */
+    let newProject = new Project(addProjectInputArea.value); 
+    updateTaskData(newProject, "project"); 
+    refreshLocalStorage();
+    appendToProjectList(newProject.createOneProject());
     hideProjectForm();
   };
   const showTaskForm = () => {
     newTasksForm.style.visibility = "visible";
     addNewTaskButton.style.visibility = "hidden";
+    newTasksForm.reset();
     addTaskInputArea.focus();
   };
   const showProjectForm = () => {
     newProjectForm.style.visibility = "visible";
     addNewProjectButton.style.visibility = "hidden";
+    newProjectForm.reset();
     addProjectInputArea.focus();
   };
 
@@ -145,18 +166,14 @@ const UI = (() => {
   };
   // -----------------------------------------/ HELPER FUNCTIONS /------------------------------------------------------
 
-  const renderPage = (() => {
-    clearScreen();
-    clearProjects();
+  const renderPage = (() =>{ 
 
-    refreshTaskData();
-    // refreshLocalStorage();
+    refreshTaskData(); 
 
     renderProjectList();
     renderTaskList();
 
     activateEventListeners();
 
-    // changeHeading();
   })();
 })();
