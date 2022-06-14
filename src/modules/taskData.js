@@ -62,11 +62,17 @@ export let TaskData = {
     },
   ],
   selectedProject: "College",
+
+  getSelectedProjectIndex: function() {
+    let projectIndex = TaskData.data.findIndex(
+      project_ => project_.projectTitle == this.selectedProject
+    );
+    return projectIndex;
+  },
+
   addNewTask: function (newTask) {
     for (let project of this.data) {
-      if (project.projectTitle == this.selectedProject) {
-        project.taskList.push(newTask);
-      }
+      if (project.projectTitle == this.selectedProject) project.taskList.push(newTask);
     }
   },
   setSelectedProject: function (project) {
@@ -77,13 +83,19 @@ export let TaskData = {
   },
   addNewProject: function (newProject) {
     this.data.push(newProject);
-    // console.log(this.data);
   },
   addNewTask: function (newTask) {
-    let projectIndex = this.data.findIndex(
-      (project_) => project_.projectTitle == this.selectedProject
-    );
-
-    this.data[projectIndex].taskList.push(newTask);
+    let requiredTaskList = this.data[this.getSelectedProjectIndex()].taskList;
+    if (Array.isArray(requiredTaskList))  this.data[this.getSelectedProjectIndex()].taskList.push(newTask);
   },
+  // addNewTask: function (newTask) {
+  //   let projectIndex = this.data.findIndex(
+  //     project_ => project_.projectTitle == this.selectedProject
+  //   );
+
+  //   let requiredTaskList = this.data[projectIndex].taskList;
+  //   if (Array.isArray(requiredTaskList)) {
+  //     this.data[projectIndex].taskList.push(newTask);
+  //   }
+  // },
 };

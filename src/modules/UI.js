@@ -48,7 +48,6 @@ const UI = (() => {
 
     requiredProject.taskList.forEach(renderEachTask);
 
-    console.table(requiredProject.taskList);
   };
   const selectedProjectInit = () => {
     TaskData.selectedProject = TaskData.data[0].projectTitle;
@@ -121,13 +120,28 @@ const UI = (() => {
   };
 
   const submitTask = () => {
-    if (addTaskInputArea.value.length > 1) {
+    let inputValue = addTaskInputArea.value;
+    let existingTasks = TaskData.data[TaskData.getSelectedProjectIndex()].taskList.map(task_ => task_.theTask);
+
+    if (inputValue.length < 2 || (existingTasks.includes(inputValue))) {
+      alert("Input can't be repeated and can't be less than 2 letters");
+    }
+    else{
       let newTask = new Task(addTaskInputArea.value);
       updateTaskData(newTask, "task");
       refreshLocalStorage();
       appendToTaskList(newTask.createOneTask());
     }
-    hideTaskForm();
+    
+      hideTaskForm();
+
+
+    // if (inputValue.length > 1) {
+    //   let newTask = new Task(addTaskInputArea.value);
+    //   updateTaskData(newTask, "task");
+    //   refreshLocalStorage();
+    //   appendToTaskList(newTask.createOneTask());
+    // }
   };
 
   const submitProject = () => {
@@ -169,7 +183,7 @@ const UI = (() => {
   const renderPage = (() =>{ 
 
     refreshTaskData(); 
-
+    // refreshLocalStorage();
     renderProjectList();
     renderTaskList();
 

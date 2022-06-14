@@ -112,10 +112,15 @@ const taskSwitcher = (() => {
 
   // ------------------------------HELPER FUNCTIONS------------------------------
   const renderTasksOf = (projectIndex) => {
-    for (let task_ of TaskData.data[projectIndex].taskList) {
+    let requiredTaskList = TaskData.data[projectIndex].taskList;
+    
+    if (Array.isArray(requiredTaskList)){
+      for (let task_ of requiredTaskList) {
       let newTask = new Task(task_.theTask, task_.isCompleted, task_.dueDate);
       listContainer.appendChild(newTask.createOneTask());
+        }
     }
+    
   };
   const handleSwitchingClick = (e) => {
     if (e.target.getAttribute("id") == "all-tasks") loadAllTasks();
