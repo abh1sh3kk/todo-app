@@ -11,7 +11,7 @@ let labels = document.querySelectorAll("label");
 
 let taskData = [
   {
-    projectTitle: "College",
+    projectTitle: "Web Development",
     taskList: [
       {
         theTask: "Solve Coding Problems",
@@ -19,64 +19,104 @@ let taskData = [
         taskCompleted: false,
       },
       {
-        theTask: "Finish Assignments",
+        theTask: "Finish Projects",
         dueDate: "2015-03-12",
         taskCompleted: false,
       },
       {
-        theTask: "Cook chicken",
+        theTask: "Refactor",
         dueDate: "2015-03-12",
         taskCompleted: true,
       },
     ],
   },
   {
-    projectTitle: "Assignments",
+    projectTitle: "College",
     taskList: [
       {
-        theTask: "Make  	a beautiful girlfriend",
+        theTask: "Complete assesments",
         dueDate: "2015-03-12",
         taskCompleted: true,
       },
       {
-        theTask: "Win a lottery of $10 million",
+        theTask: "Message your crush",
         dueDate: "2015-03-12",
         taskCompleted: true,
       },
       {
-        theTask: "Be like a genius",
+        theTask: "Sleep",
         dueDate: "2015-03-12",
         taskCompleted: true,
       },
     ],
   },
 ];
-let selectedProject = taskData[0];
+let taskDataNew = {
+  college: {
+    projectTitle: "Web Development",
+    taskList: [
+      {
+        theTask: "Solve Coding Problems",
+        dueDate: "2015-03-12",
+        taskCompleted: false,
+      },
+      {
+        theTask: "Finish Projects",
+        dueDate: "2015-03-12",
+        taskCompleted: false,
+      },
+      {
+        theTask: "Refactor",
+        dueDate: "2015-03-12",
+        taskCompleted: true,
+      },
+    ],
+  },
+  Assignments: {
+    projectTitle: "College",
+    taskList: [
+      {
+        theTask: "Complete assesments",
+        dueDate: "2015-03-12",
+        taskCompleted: true,
+      },
+      {
+        theTask: "Message your crush",
+        dueDate: "2015-03-12",
+        taskCompleted: true,
+      },
+      {
+        theTask: "Sleep",
+        dueDate: "2015-03-12",
+        taskCompleted: true,
+      },
+    ],
+  },
+};
+let selectedProject = taskDataNew["college"];
 
 // -----------------------------------------------------------------------------------------
 // Manipulating data from taskData
 
 function updateTaskData() {
-	console.log("hi");
-	// taskData.push(new object created by passing (task and completedStatus))
-	selectedProject.taskList.push(new taskLine("This is the task", true));
-	console.log("Pushed", selectedProject)
+  console.log("hi");
+  // taskData.push(new object created by passing (task and completedStatus))
+  selectedProject.taskList.push(new taskLine("This is the task", true));
+  console.log("Pushed", selectedProject);
 }
 
 class taskLine {
-	constructor (theTask="", taskCompleted="false", dueDate="No Date") {
-		this.theTask= theTask;
-		this.taskCompleted = taskCompleted;
-		this.dueDate = dueDate;
-	}
-
+  constructor(theTask = "", taskCompleted = "false", dueDate = "No Date") {
+    this.theTask = theTask;
+    this.taskCompleted = taskCompleted;
+    this.dueDate = dueDate;
+  }
 }
-
-
-
 
 // -----------------------------------------------------------------------------------------
 // Add data
+
+//  showProjctForm(), hideProjectForm(), performSubmit(e), submitAction(), hideTAskForm(), updateTaskData(),
 // -----------------------------------------------------------------------------------------
 // PROJECT SIDE
 const addNewProjectButton = document.querySelector(".add-new-projects__button");
@@ -119,7 +159,15 @@ function hideProjectForm() {
 }
 function submitAction() {
   console.log(addProjectInputArea.value);
+  updateDataBase();
   updateTaskData();
+}
+
+// -----------------------------------------------------------------------------------------
+// UPDATE DATABASE
+
+function updateDataBase() {
+  console.log("Database is updated");
 }
 
 // -----------------------------------------------------------------------------------------
@@ -214,20 +262,28 @@ function loadAllTasks() {
   clearTasks();
   projectHeading.textContent = "All tasks";
 
-  // entering inside the array of projects [{A}, {B}, {C}]
-  for (let [project_index, project_] of taskData.entries()) {
-    // entering inside every taskLists [{title: "college", taskList: [{A}, {B}] }]
-    for (let [taskObj_index, taskObj_] of project_.taskList.entries()) {
+  for (let project_ in taskDataNew) {
+    for (let task_ of project_.taskList) {
       lists.appendChild(
-        createOneTask(
-          project_index,
-          taskObj_index,
-          taskObj_.theTask,
-          taskObj_.dueDate
-        )
+        createOneTask(task_.theTask, task_.taskCompleted, task_.dueDate)
       );
     }
   }
+
+  // // entering inside the array of projects [{A}, {B}, {C}]
+  // for (let [project_index, project_] of taskData.entries()) {
+  //   // entering inside every taskLists [{title: "college", taskList: [{A}, {B}] }]
+  //   for (let [taskObj_index, taskObj_] of project_.taskList.entries()) {
+  //     lists.appendChild(
+  //       createOneTask(
+  //         project_index,
+  //         taskObj_index,
+  //         taskObj_.theTask,
+  //         taskObj_.dueDate
+  //       )
+  //     );
+  //   }
+  // }
 }
 function changeHeading() {
   projectHeading.textContent = selectedProject.projectTitle;
@@ -236,23 +292,29 @@ export function renderTasks() {
   clearTasks();
   changeHeading();
 
-  // entering inside the array of projects [{A}, {B}, {C}]
-  for (let [project_index, project_] of taskData.entries()) {
-    // { title: "A" , task... }, {title: "B", task...}
-    if (selectedProject.projectTitle == project_.projectTitle) {
-      // {title: "college", taskList: [{A}, {B}, {C}]}
-      for (let [taskObj_index, taskObj_] of project_.taskList.entries()) {
-        lists.appendChild(
-          createOneTask(
-            project_index,
-            taskObj_index,
-            taskObj_.theTask,
-            taskObj_.dueDate
-          )
-        );
-      }
-    }
+  for (let taskObj_ of selectedProject.taskList) {
+    lists.appendChild(
+      createOneTask(taskObj_.theTask, taskObj_.taskCompleted, taskObj_.dueDate)
+    );
   }
+
+  // // entering inside the array of projects [{A}, {B}, {C}]
+  // for (let [project_index, project_] of taskData.entries()) {
+  //   // { title: "A" , task... }, {title: "B", task...}
+  //   if (selectedProject.projectTitle == project_.projectTitle) {
+  //     // {title: "college", taskList: [{A}, {B}, {C}]}
+  //     for (let [taskObj_index, taskObj_] of project_.taskList.entries()) {
+  //       lists.appendChild(
+  //         createOneTask(
+  //           project_index,
+  //           taskObj_index,
+  //           taskObj_.theTask,
+  //           taskObj_.dueDate
+  //         )
+  //       );
+  //     }
+  //   }
+  // }
 }
 
 export function clearTasks() {

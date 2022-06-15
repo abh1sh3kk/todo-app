@@ -16,7 +16,7 @@ module.exports = {
   mode: "development",
 
   entry: {
-    main: path.resolve(__dirname, "src/script.js"),
+    main: path.resolve(__dirname, "src/scripts.js"),
   },
 
   output: {
