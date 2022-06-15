@@ -31,6 +31,7 @@ const taskSwitcher = (() => {
     clearScreen();
     changeHeading();
     highlightSelectedProject();
+    hideCrossButton();
     hideAddTaskButton();
   };
   const clearScreen = () => {
@@ -56,13 +57,33 @@ const taskSwitcher = (() => {
         break;
     }
     const hideAddTaskButton = () => {
-      addButtonTask.style.display = "none";
+      addButtonTask.classList.add("hidden");
     };
     const showAddTaskButton = () => {
-      addButtonTask.style.display = "block";
+      addButtonTask.classList.remove("hidden");
     };
   };
 
+  const hideCrossButton = () => {
+    // let crossBtn = document.querySelectorAll(".remove");
+
+    //   crossBtn.forEach(cross => {
+    //     cross.classList.add("hidden");
+    //   })
+    
+    // crossBtn.classList.add('hidden');
+  }
+  const showCrossButton = () => {
+
+    console.log("show cross button")
+    // let crossBtn = document.querySelectorAll(".remove");
+
+    //   crossBtn.forEach(cross => {
+    //     cross.classList.remove("hidden");
+    //   })
+    
+    // crossBtn.classList.remove('hidden');
+  }
   const hideAddTaskButton = () =>  {
       addButtonTask.style.display = "none";
   }
@@ -102,6 +123,7 @@ const taskSwitcher = (() => {
     TaskData.setSelectedProject(e.target.textContent);
     performRituals();
     showAddTaskButton();
+    showCrossButton();
 
     for (let [projectIndex, project_] of TaskData.data.entries()) {
       if (project_.projectTitle == e.target.textContent) {

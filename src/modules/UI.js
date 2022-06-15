@@ -47,7 +47,6 @@ const UI = (() => {
     );
 
     requiredProject.taskList.forEach(renderEachTask);
-
   };
   const selectedProjectInit = () => {
     TaskData.selectedProject = TaskData.data[0].projectTitle;
@@ -59,9 +58,9 @@ const UI = (() => {
   };
 
   const renderEachTask = (task_) => {
-          let newTask = new Task(task_.theTask, task_.isCompleted, task_.dueDate);
-        listContainer.appendChild(newTask.createOneTask());
-  }
+    let newTask = new Task(task_.theTask, task_.isCompleted, task_.dueDate);
+    listContainer.appendChild(newTask.createOneTask());
+  };
 
   const renderEachProject = (item) => {
     let newProject = new Project(item);
@@ -69,28 +68,40 @@ const UI = (() => {
   };
 
   // ----------------------------------- HELPER FUNCTIONS--------------------------------
+  const handleKeyboardShortcuts = (e) => {
+    if (e.key.toLowerCase() == "t" && e.altKey) showTaskForm();
+    else if (e.key.toLocaleLowerCase() == "p" && e.altKey) showProjectForm();
+  };
   const removeTask = (e) => {
     removeFromTaskData(e);
     refreshLocalStorage();
-      removeElement(e);
-  }
+    removeElement(e);
+  };
   const removeFromTaskData = (e) => {
-    let textToRemove = e.target.parentElement.previousElementSibling.lastElementChild.textContent;
-    let tasksOfSelectedProject = TaskData.data[TaskData.getSelectedProjectIndex()].taskList.map(task_ => task_.theTask);
+    let textToRemove =
+      e.target.parentElement.previousElementSibling.lastElementChild
+        .textContent;
+    let tasksOfSelectedProject = TaskData.data[
+      TaskData.getSelectedProjectIndex()
+    ].taskList.map((task_) => task_.theTask);
     let indexOfTTR = tasksOfSelectedProject.indexOf(textToRemove);
-    
-    console.log(TaskData.data[TaskData.getSelectedProjectIndex()].taskList.splice(indexOfTTR, 1));
-    
+
+    console.log(
+      TaskData.data[TaskData.getSelectedProjectIndex()].taskList.splice(
+        indexOfTTR,
+        1
+      )
+    );
   };
   const removeElement = (e) => {
-        e.target.parentElement.parentElement.remove()
+    e.target.parentElement.parentElement.remove();
   };
   const appendToTaskList = (newTask) => {
     listContainer.appendChild(newTask);
-  }
+  };
   const appendToProjectList = (newProject) => {
     customProjectList.appendChild(newProject);
-  }
+  };
 
   const clearProjects = () => {
     customProjectList.innerHTML = "";
@@ -102,21 +113,22 @@ const UI = (() => {
   const updateTaskData = (newValue, selector) => {
     if (selector === "task") {
       TaskData.addNewTask(newValue);
-    }
-    else if (selector === "project") {
+    } else if (selector === "project") {
       TaskData.addNewProject(newValue);
-    }
-    else;
-    console.log(TaskData.data)
-  }
+    } else;
+    console.log(TaskData.data);
+  };
 
   const activateEventListeners = () => {
-
     // any click in body will be handled
     document.body.addEventListener("click", (e) => {
       handleClick(e);
     });
 
+    // any keyboard shortcuts
+    document.addEventListener("keydown", (e) => {
+      handleKeyboardShortcuts(e);
+    });
 
     // any form submit will be handled
     for (let form of forms) {
@@ -126,11 +138,13 @@ const UI = (() => {
       });
     }
   };
+
   const handleClick = (e) => {
     if (e.target.classList.contains("add-task")) showTaskForm();
     else if (e.target.classList.contains("add-project")) showProjectForm();
     else if (e.target.classList.contains("cancel-button-task")) hideTaskForm();
-    else if (e.target.classList.contains("cancel-button-project")) hideProjectForm();
+    else if (e.target.classList.contains("cancel-button-project"))
+      hideProjectForm();
     else if (e.target.classList.contains("submit-task")) submitTask();
     else if (e.target.classList.contains("submit-project")) submitProject();
     else if (e.target.classList.contains("remove")) removeTask(e);
@@ -138,20 +152,20 @@ const UI = (() => {
 
   const submitTask = () => {
     let inputValue = addTaskInputArea.value;
-    let existingTasks = TaskData.data[TaskData.getSelectedProjectIndex()].taskList.map(task_ => task_.theTask);
+    let existingTasks = TaskData.data[
+      TaskData.getSelectedProjectIndex()
+    ].taskList.map((task_) => task_.theTask);
 
-    if (inputValue.length < 2 || (existingTasks.includes(inputValue))) {
+    if (inputValue.length < 2 || existingTasks.includes(inputValue)) {
       alert("Input can't be repeated and can't be less than 2 letters");
-    }
-    else{
+    } else {
       let newTask = new Task(addTaskInputArea.value);
       updateTaskData(newTask, "task");
       refreshLocalStorage();
       appendToTaskList(newTask.createOneTask());
     }
-    
-      hideTaskForm();
 
+    hideTaskForm();
 
     // if (inputValue.length > 1) {
     //   let newTask = new Task(addTaskInputArea.value);
@@ -167,8 +181,8 @@ const UI = (() => {
       local storage update
       append project
     */
-    let newProject = new Project(addProjectInputArea.value); 
-    updateTaskData(newProject, "project"); 
+    let newProject = new Project(addProjectInputArea.value);
+    updateTaskData(newProject, "project");
     refreshLocalStorage();
     appendToProjectList(newProject.createOneProject());
     hideProjectForm();
@@ -197,15 +211,13 @@ const UI = (() => {
   };
   // -----------------------------------------/ HELPER FUNCTIONS /------------------------------------------------------
 
-  const renderPage = (() =>{ 
-
-    refreshTaskData(); 
+  const renderPage = (() => {
+    refreshTaskData();
     // refreshLocalStorage();
 
     renderProjectList();
     renderTaskList();
 
     activateEventListeners();
-
   })();
 })();
