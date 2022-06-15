@@ -3,7 +3,8 @@ const refreshLocalStorage = () => {
   localStorage.setItem("taskData", JSON.stringify(TaskData.data));
 };
 const refreshTaskData = () => {
-  TaskData.data= JSON.parse(localStorage.getItem("taskData"));
+  let TaskData__localStorage = localStorage.getItem("taskData");
+  if (TaskData__localStorage != null)  TaskData.data = JSON.parse(TaskData__localStorage);
 };
 const clearLocalStorage = () => {
 	localStorage.clear();

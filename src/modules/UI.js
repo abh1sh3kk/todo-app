@@ -69,6 +69,22 @@ const UI = (() => {
   };
 
   // ----------------------------------- HELPER FUNCTIONS--------------------------------
+  const removeTask = (e) => {
+    removeFromTaskData(e);
+    refreshLocalStorage();
+      removeElement(e);
+  }
+  const removeFromTaskData = (e) => {
+    let textToRemove = e.target.parentElement.previousElementSibling.lastElementChild.textContent;
+    let tasksOfSelectedProject = TaskData.data[TaskData.getSelectedProjectIndex()].taskList.map(task_ => task_.theTask);
+    let indexOfTTR = tasksOfSelectedProject.indexOf(textToRemove);
+    
+    console.log(TaskData.data[TaskData.getSelectedProjectIndex()].taskList.splice(indexOfTTR, 1));
+    
+  };
+  const removeElement = (e) => {
+        e.target.parentElement.parentElement.remove()
+  };
   const appendToTaskList = (newTask) => {
     listContainer.appendChild(newTask);
   }
@@ -117,6 +133,7 @@ const UI = (() => {
     else if (e.target.classList.contains("cancel-button-project")) hideProjectForm();
     else if (e.target.classList.contains("submit-task")) submitTask();
     else if (e.target.classList.contains("submit-project")) submitProject();
+    else if (e.target.classList.contains("remove")) removeTask(e);
   };
 
   const submitTask = () => {
@@ -184,6 +201,7 @@ const UI = (() => {
 
     refreshTaskData(); 
     // refreshLocalStorage();
+
     renderProjectList();
     renderTaskList();
 
