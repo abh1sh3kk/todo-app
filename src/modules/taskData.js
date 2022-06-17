@@ -78,6 +78,9 @@ export let TaskData = {
   setSelectedProject: function (project) {
     this.selectedProject = project;
   },
+  setSelectedProjectIndex: function (index) {
+    this.selectedProject = this.TaskData.data[index];
+  },
   getSelectedProject: function () {
     return this.selectedProject;
   },

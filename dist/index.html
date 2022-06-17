@@ -69,6 +69,7 @@
               type="text"
               class="add-new-projects__input--text"
               autofocus
+              maxlength="25"
             />
             <div class="add-new-projects__two-buttons">
               <button
@@ -90,7 +91,10 @@
 
       <!-- ACTUAL TASKS -->
       <section>
-        <h1 class="project-heading">College</h1>
+        <div class="heading-and-remove">
+          <h1 class="project-heading">College</h1>
+          <figure class="remove-project"><img src="delete-project.png" alt="delete this" class="remove_project"></figure>
+        </div>
 
         <div class="task-lists">
           <!-- TASK 1 -->
@@ -145,7 +149,7 @@
 
            <!-- FORM FOR TASK  -->
           <form class="add-new-tasks__form">
-            <input type="text" class="add-new-tasks__input--text" />
+            <input type="text" class="add-new-tasks__input--text" maxlength="40" />
             <button class="add-new-tasks__button--enter add-new-tasks__buttons submit-task" type="submit">Enter</button>
             <button class="add-new-tasks__button--cancel add-new-tasks__buttons cancel-button-task" type="button">Cancel</button>
           </form>          

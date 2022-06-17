@@ -51,6 +51,10 @@ $footer-height: 0px;
 .hidden {
   display: none;
 }
+input {
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
 // ---------------------------------------------------------------------------
 
 body {
@@ -188,7 +192,7 @@ body {
       padding: 1rem 2rem;
       border: none;
       border-radius: 1.3rem;
-  
+
       background-color: transparent;
       transition: 0.3s ease-in-out;
       .add-new-projects__img,
@@ -257,14 +261,40 @@ body {
 
     flex: 1;
     padding: 3rem 15rem 3rem 15rem;
-    h1 {
-      font-size: 3rem;
 
-      border-bottom: 2px solid $primary-text-color;
+        h1 {
+          font-size: 3rem;
 
-      margin-block: 2rem;
-      padding-bottom: 0.8rem;
-    }
+          border-bottom: 2px solid $primary-text-color;
+
+          margin-block: 2rem;
+          padding-bottom: 0.8rem;
+        }
+      
+    // .heading-and-remove {
+    //   display: flex;
+    //   justify-content: space-between;
+    //   .remove-project {
+    //     h1 {
+    //       font-size: 3rem;
+
+    //       border-bottom: 2px solid $primary-text-color;
+
+    //       margin-block: 2rem;
+    //       padding-bottom: 0.8rem;
+    //     }
+    //     img {
+    //       height: 3rem;
+    //       transition: 0.2s all ease-in-out;
+    //     }
+    //     img:hover {
+    //       transform: scale(1.1);
+    //     }
+    //     img:active {
+    //       transform: scale(1);
+    //     }
+    //   }
+    // }
 
     // list area
     .task-lists {
@@ -360,46 +390,27 @@ body {
           margin-right: 0.8rem;
         }
       }
-
     }
   }
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // .add-new-tasks__form {
-  //   // visibility: hidden;
-  //   position: absolute;
-  //   display: none;
-  //   top: 0;
-  //   width: 100%;
-  //   display: flex;
-  //   button {
-  //     padding: 0.5rem 1rem;
-  //     border: none;
-  //     border-radius: 1rem;
-  //     height: 4rem;
-  //     margin-inline: 0.5rem;
-  //   }
-  //   // .add {
-  //   //   padding: 0.5rem 2rem;
-  //   //   background-color: $accent-color;
-  //   //   color: white;
-  //   // }
-  // }
+// .add-new-tasks__form {
+//   // visibility: hidden;
+//   position: absolute;
+//   display: none;
+//   top: 0;
+//   width: 100%;
+//   display: flex;
+//   button {
+//     padding: 0.5rem 1rem;
+//     border: none;
+//     border-radius: 1rem;
+//     height: 4rem;
+//     margin-inline: 0.5rem;
+//   }
+//   // .add {
+//   //   padding: 0.5rem 2rem;
+//   //   background-color: $accent-color;
+//   //   color: white;
+//   // }
+// }

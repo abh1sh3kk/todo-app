@@ -8,6 +8,7 @@ import {
   clearLocalStorage,
 } from "./localStorage.js";
 import { taskSwitcher } from "./taskSwitcher.js";
+import { remove } from "./removeProject.js"
 
 const UI = (() => {
   // Project Side DOM Selection
@@ -71,13 +72,20 @@ const UI = (() => {
   const handleKeyboardShortcuts = (e) => {
     if (e.key.toLowerCase() == "t" && e.altKey) showTaskForm();
     else if (e.key.toLocaleLowerCase() == "p" && e.altKey) showProjectForm();
+    else if (e.key == 'Escape') hideProjectForm() || hideTaskForm();
   };
   const removeTask = (e) => {
-    removeFromTaskData(e);
+    removeTaskFromTaskData(e);
     refreshLocalStorage();
-    removeElement(e);
+    removeTaskElement(e);
   };
-  const removeFromTaskData = (e) => {
+  const removeProject = (e) => {
+    // removeProjectFromTaskData(e);
+    // refreshLocalStorage();
+    // removeProjectElement(e);
+    console.log(`Remove Project fn is called ${TaskData.data.slice(TaskData.getSelectedProjectIndex(), 1)}`)
+  }
+  const removeTaskFromTaskData = (e) => {
     let textToRemove =
       e.target.parentElement.previousElementSibling.lastElementChild
         .textContent;
@@ -93,8 +101,16 @@ const UI = (() => {
       )
     );
   };
-  const removeElement = (e) => {
+  const removeProjectFromTaskData = (e) => {
+    console.log(TaskData.data.slice(TaskData.getSelectedProjectIndex(), 1));
+
+  };
+  const removeTaskElement = (e) => {
     e.target.parentElement.parentElement.remove();
+  };
+  const removeProjectElement = (e) => {
+  customProjectList.childNodes[TaskData.getSelectedProjectIndex()].remove();
+
   };
   const appendToTaskList = (newTask) => {
     listContainer.appendChild(newTask);
@@ -143,18 +159,18 @@ const UI = (() => {
     if (e.target.classList.contains("add-task")) showTaskForm();
     else if (e.target.classList.contains("add-project")) showProjectForm();
     else if (e.target.classList.contains("cancel-button-task")) hideTaskForm();
-    else if (e.target.classList.contains("cancel-button-project"))
-      hideProjectForm();
+    else if (e.target.classList.contains("cancel-button-project")) hideProjectForm();
     else if (e.target.classList.contains("submit-task")) submitTask();
     else if (e.target.classList.contains("submit-project")) submitProject();
     else if (e.target.classList.contains("remove")) removeTask(e);
+    else if (e.target.classList.contains("remove_project")) removeProject(e);
   };
 
   const submitTask = () => {
     let inputValue = addTaskInputArea.value;
     let existingTasks = TaskData.data[
       TaskData.getSelectedProjectIndex()
-    ].taskList.map((task_) => task_.theTask);
+    ].taskList.map(task_ => task_.theTask);
 
     if (inputValue.length < 2 || existingTasks.includes(inputValue)) {
       alert("Input can't be repeated and can't be less than 2 letters");
@@ -192,12 +208,14 @@ const UI = (() => {
     addNewTaskButton.style.visibility = "hidden";
     newTasksForm.reset();
     addTaskInputArea.focus();
+    hideProjectForm();
   };
   const showProjectForm = () => {
     newProjectForm.style.visibility = "visible";
     addNewProjectButton.style.visibility = "hidden";
     newProjectForm.reset();
     addProjectInputArea.focus();
+    hideTaskForm();
   };
 
   const hideProjectForm = () => {
