@@ -1,0 +1,62 @@
+[
+   {
+      "projectTitle": "Web Development",
+      "taskList": [
+         {
+            "theTask": "Solve Coding Problems",
+            "dueDate": "2015-03-12",
+            "isCompleted": false
+         },
+         {
+            "theTask": "Finish Projects",
+            "dueDate": "2015-03-12",
+            "isCompleted": false
+         },
+         {
+            "theTask": "Refactor",
+            "dueDate": "2015-03-12",
+            "isCompleted": true
+         }
+      ]
+   },
+   {
+      "projectTitle": "Assignments",
+      "taskList": [
+         {
+            "theTask": "Complete DBMS labsheet",
+            "dueDate": "2015-03-12",
+            "isCompleted": false
+         },
+         {
+            "theTask": "Finish AI assesments",
+            "dueDate": "2015-03-12",
+            "isCompleted": false
+         },
+         {
+            "theTask": "Submit AI assesments",
+            "dueDate": "2015-03-12",
+            "isCompleted": true
+         }
+      ]
+   },
+   {
+      "projectTitle": "College",
+      "taskList": [
+         {
+            "theTask": "Complete assesments",
+            "dueDate": "2015-03-12",
+            "isCompleted": true
+         },
+         {
+            "theTask": "Message your crush",
+            "dueDate": "2015-03-12",
+            "isCompleted": true
+         },
+         {
+            "theTask": "Sleep",
+            "dueDate": "2015-03-12",
+            "isCompleted": true
+         }
+      ]
+   }
+]

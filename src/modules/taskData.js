@@ -1,4 +1,7 @@
 export let TaskData = {
+
+
+  
   data: [
     {
       projectTitle: "Web Development",
@@ -61,7 +64,12 @@ export let TaskData = {
       ],
     },
   ],
-  selectedProject: "College",
+
+
+  selectedProject: '',
+  selectedProjectIndex: 0,
+
+
 
   getSelectedProjectIndex: function() {
     let projectIndex = TaskData.data.findIndex(
@@ -70,35 +78,61 @@ export let TaskData = {
     return projectIndex;
   },
 
+
+
   addNewTask: function (newTask) {
     for (let project of this.data) {
       if (project.projectTitle == this.selectedProject) project.taskList.push(newTask);
     }
   },
+
+
+
   setSelectedProject: function (project) {
     this.selectedProject = project;
   },
+
+
+
   setSelectedProjectIndex: function (index) {
     this.selectedProject = this.TaskData.data[index];
   },
+
+
+
   getSelectedProject: function () {
     return this.selectedProject;
   },
+
+
+
   addNewProject: function (newProject) {
     this.data.push(newProject);
   },
+
+
+
   addNewTask: function (newTask) {
     let requiredTaskList = this.data[this.getSelectedProjectIndex()].taskList;
     if (Array.isArray(requiredTaskList))  this.data[this.getSelectedProjectIndex()].taskList.push(newTask);
   },
-  // addNewTask: function (newTask) {
-  //   let projectIndex = this.data.findIndex(
-  //     project_ => project_.projectTitle == this.selectedProject
-  //   );
 
-  //   let requiredTaskList = this.data[projectIndex].taskList;
-  //   if (Array.isArray(requiredTaskList)) {
-  //     this.data[projectIndex].taskList.push(newTask);
-  //   }
-  // },
+
+
+  setData: function (newData) {
+    this.data = newData;
+  },
+
+
+
+  isEmpty: function () {
+    return (this.data.length == 0);
+  },
+
+
+
+  findProjectIndex: function(project_) {
+  let projectArray = this.data.map(eachProject => eachProject.projectTitle);    
+  return projectArray.indexOf(project_);
+  }
 };

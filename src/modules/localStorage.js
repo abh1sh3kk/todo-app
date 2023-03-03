@@ -1,12 +1,26 @@
 import { TaskData } from "./taskData.js";
+import allData from "./data.json";
 const refreshLocalStorage = () => {
   localStorage.setItem("taskData", JSON.stringify(TaskData.data));
 };
-const refreshTaskData = () => {
-  let TaskData__localStorage = localStorage.getItem("taskData");
-  if (TaskData__localStorage != null)  TaskData.data = JSON.parse(TaskData__localStorage);
+const initializeLocalStorage = () => {
+  if (localStorage.getItem("taskData") != null) return;
+
+  localStorage.setItem("taskData", JSON.stringify(allData));
 };
+
+
+const refreshTaskData = () => {
+  TaskData.setData(JSON.parse(localStorage.getItem("taskData")));
+};
+
+
 const clearLocalStorage = () => {
-	localStorage.clear();
-}
-export { refreshTaskData, refreshLocalStorage, clearLocalStorage }
+  localStorage.clear();
+};
+export {
+  refreshTaskData,
+  refreshLocalStorage,
+  clearLocalStorage,
+  initializeLocalStorage,
+};

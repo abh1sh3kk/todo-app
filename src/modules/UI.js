@@ -2,7 +2,7 @@ import "./../styles/style.scss";
 import Task from "./task.js";
 import Project from "./project.js";
 import { TaskData } from "./taskData.js";
-import { refreshTaskData, refreshLocalStorage, clearLocalStorage } from "./localStorage.js";
+import { refreshTaskData, refreshLocalStorage, clearLocalStorage, initializeLocalStorage } from "./localStorage.js";
 import { taskSwitcher } from "./taskSwitcher.js";
 import { remove } from "./removeProject.js"
 
@@ -15,6 +15,8 @@ const UI = (() => {
   const addProjectForm = document.querySelector(".add-new-projects__form");
   const addProjectInputArea = document.querySelector(".add-new-projects__input--text");
   const customProjectList = document.querySelector(".custom-project-list-ul");
+  const removeProjectIcons = document.querySelectorAll(".heading-icon_img");
+  
 
   // Task Side DOM Selection
   const addNewTaskButton = document.querySelector(".add-new-tasks__button");
@@ -30,7 +32,11 @@ const UI = (() => {
 
 
   const renderTaskList = () => {
-    selectedProjectInit();
+    // selectedProjectInit();
+
+    if (TaskData.isEmpty()) return;
+
+    if (TaskData.selectedProject.length < 1) return;
 
     let requiredProject = TaskData.data.find(
       (value) => value.projectTitle == TaskData.selectedProject
@@ -41,14 +47,24 @@ const UI = (() => {
 
 
   const selectedProjectInit = () => {
-    TaskData.selectedProject = TaskData.data[0].projectTitle;
+    // TaskData.selectedProject = TaskData.data[0].projectTitle;
+
+    TaskData.setSelectedProject(TaskData.data[0].projectTitle);
   };
 
 
   const renderProjectList = () => {
     clearProjects();
+
+    if (TaskData.isEmpty()) return ;
+
+
     let projectArray = TaskData.data.map((project) => project.projectTitle);
     projectArray.forEach(renderEachProject);
+
+    if (TaskData.isEmpty()){
+      
+    }
   };
 
 
@@ -62,6 +78,22 @@ const UI = (() => {
     customProjectList.appendChild(newProject.createOneProject());
   };
 
+
+
+  const removeProjectFromUI = (e) => {
+    e.target.parentElement.parentElement.remove();
+
+    console.log(TaskData);
+
+    // if (TaskData.isEmpty()) {
+    //   console.log("TaskData is empty")
+    //   displayEmptyMessage();
+    //   // loadAllTasks();
+    //   console.log("UI.js 87 .. load all tasks now")
+    // }
+
+
+  }
 
 
   // ----------------------------------- HELPER FUNCTIONS--------------------------------
@@ -79,11 +111,20 @@ const UI = (() => {
     removeTaskElement(e);
   };
 
+  const displayEmptyMessage = () => {
+    console.log("Task: Clear screen and display empty message");
+  }
+
+
   const removeProject = (e) => {
-    // removeProjectFromTaskData(e);
-    // refreshLocalStorage();
-    // removeProjectElement(e);
-    console.log(`Remove Project fn is called ${TaskData.data.slice(TaskData.getSelectedProjectIndex(), 1)}`)
+
+    removeProjectFromTaskData(e);
+    
+    refreshLocalStorage();
+
+    removeProjectFromUI(e);
+
+    // console.log(`Remove Project fn is called ${TaskData.data.slice(TaskData.getSelectedProjectIndex(), 1)}`)
   }
 
 
@@ -106,8 +147,21 @@ const UI = (() => {
   };
 
   const removeProjectFromTaskData = (e) => {
-    console.log(TaskData.data.slice(TaskData.getSelectedProjectIndex(), 1));
+    // const projectIndex = TaskData.getSelectedProjectIndex();
 
+    // // slice if enough data in TaskData
+    // if (TaskData.length >  projectIndex) TaskData.setData(TaskData.data.slice(projectIndex, 1));
+    // else console.log("Slice couldn't be done.. UI:119");
+
+    // // if TaskData is empty
+    // if (TaskData.length > 0) TaskData.setSelectedProject(TaskData.data[0].projectTitle); 
+    // else displayEmptyMessage();
+
+    const projectToRemove = e.target.parentElement.previousElementSibling.textContent;
+    const indexToRemove = TaskData.findProjectIndex(projectToRemove);
+    TaskData.setData(TaskData.data.slice(indexToRemove, 1));
+
+    
   };
 
 
@@ -117,7 +171,8 @@ const UI = (() => {
   };
 
   const removeProjectElement = (e) => {
-  customProjectList.childNodes[TaskData.getSelectedProjectIndex()].remove();
+  // customProjectList.childNodes[TaskData.getSelectedProjectIndex()].remove();
+  console.log(customProjectList)
   };
 
 
@@ -129,7 +184,36 @@ const UI = (() => {
     customProjectList.appendChild(newProject);
   };
 
+  // document.addEventListener("DOMContentLoaded", () => {
+  //   let projectIcon = document.querySelector(".heading-icon_img");
+  //   // console.log(document.querySelectorAll(".custom-project"))
+  //   let projectList = document.querySelectorAll(".custom-project");
+  //    projectList.forEach(project => {
+  //     project.addEventListener("mouseover", () => {
+  //       projectIcon.classList.add("colorize-white");
+  //     })
+  //     project.addEventListener("mouseout", () => {
+  //       projectIcon.classList.remove("colorize-white");
+  //     })
+  //    })
+  // document.body.addEventListener("mouseover", (e) => {
+  //   let projectIcon = document.querySelector(".heading-icon_img");
+  //   // console.log(document.querySelectorAll(".custom-project"))
+  //   let projectList = document.querySelectorAll(".custom-project");
+  
 
+    
+
+
+  // })
+  // customProjectList.addEventListener("mouseover", () => {
+  //   // removeProjectIcon.classList.add("colorize-white");
+  //   document.querySelector(".heading-icon_img").classList.add("colorize-white");
+  // })
+  // customProjectList.addEventListener("mouseout", () => {
+  //   //  removeProjectIcon.classList.remove("colorize-white");
+  //   document.querySelector(".heading-icon_img").classList.remove("colorize-white");
+  // })
 
 
   const clearProjects = () => {
@@ -144,55 +228,63 @@ const UI = (() => {
 
 
   const updateTaskData = (newValue, selector) => {
-    if (selector === "task") {
-      TaskData.addNewTask(newValue);
-    } else if (selector === "project") {
-      TaskData.addNewProject(newValue);
-    } else;
-    console.log(TaskData.data);
+    switch (selector) {
+      case 'task': 
+        TaskData.addNewTask(newValue);
+        break;
+      case 'project': 
+        TaskData.addNewProject(newValue);
+        break;
+
+      default: 
+        console.log(`Selector is wrong: ${selector}, ${newValue}`)
+    }
+
   };
 
 
 
 
   const activateEventListeners = () => {
-    // any click in body will be handled
-    document.body.addEventListener("click", (e) => {
-      handleClick(e);
-    });
-
-    // any keyboard shortcuts
-    document.addEventListener("keydown", (e) => {
-      handleKeyboardShortcuts(e);
-    });
-
-    // any form submit will be handled
-    for (let form of forms) {
-      form.addEventListener("submit", (e) => {
-        e.preventDefault();
-        handleClick(e);
-      });
-    }
+    document.body.addEventListener("click", (e) => { handleClick(e) });
+    document.addEventListener("keydown", (e) => { handleKeyboardShortcuts(e) });
   };
 
 
 
 
   const handleClick = (e) => {
-    if (e.target.classList.contains("add-task")) showTaskForm();
-    else if (e.target.classList.contains("add-project")) showProjectForm();
-    else if (e.target.classList.contains("cancel-button-task")) hideTaskForm();
-    else if (e.target.classList.contains("cancel-button-project")) hideProjectForm();
-    else if (e.target.classList.contains("submit-task")) submitTask();
-    else if (e.target.classList.contains("submit-project")) submitProject();
-    else if (e.target.classList.contains("remove")) removeTask(e);
-    else if (e.target.classList.contains("remove_project")) removeProject(e);
+
+
+    const listOfClass = e.target.classList;
+    for (let class_ of listOfClass) {
+        switch (class_){
+          case 'add-task': showTaskForm(); break;
+          case 'add-project':  showProjectForm(); break;
+          case 'cancel-button-task': hideTaskForm(); break;
+          case 'cancel-button-project':  hideProjectForm(); break;
+          case 'submit-task':  submitTask(e); break;
+          case 'submit-project': submitProject(e); break;
+          case 'remove': removeTask(e); break;
+          case 'remove_project': removeProject(e); break;
+          default: break;
+
+    // if (e.target.classList.contains("add-task"))                       showTaskForm();
+    // else if (e.target.classList.contains("add-project"))               showProjectForm();
+    // else if (e.target.classList.contains("cancel-button-task"))        hideTaskForm();
+    // else if (e.target.classList.contains("cancel-button-project"))     hideProjectForm();
+    // else if (e.target.classList.contains("submit-task"))               submitTask(e);
+    // else if (e.target.classList.contains("submit-project"))            submitProject(e);
+    // else if (e.target.classList.contains("remove"))                    removeTask(e);
+    // else if (e.target.classList.contains("remove_project"))            removeProject(e);
+
+
+        }
+    }
   };
 
-
-
-
-  const submitTask = () => {
+  const submitTask = (e) => {
+    e.preventDefault();
     let inputValue = addTaskInputArea.value;
     let existingTasks = TaskData.data[
       TaskData.getSelectedProjectIndex()
@@ -217,7 +309,8 @@ const UI = (() => {
     // }
   };
 
-  const submitProject = () => {
+  const submitProject = (e) => {
+    e.preventDefault();
     let newProject = new Project(addProjectInputArea.value);
     updateTaskData(newProject, "project");
     refreshLocalStorage();
@@ -226,6 +319,7 @@ const UI = (() => {
   };
 
 
+  
 
   const showTaskForm = () => {
     newTasksForm.style.visibility = "visible";
@@ -255,11 +349,16 @@ const UI = (() => {
     addNewTaskButton.style.visibility = "visible";
   };
 
+  const isFirstTime = () => {
+    console.log(localStorage.getItem('taskData').length);
+  }
+
   // -----------------------------------------/ DRIVER CODE /------------------------------------------------------
 
   const renderPage = (() => {
+    initializeLocalStorage();
+
     refreshTaskData();
-    // refreshLocalStorage();
 
     renderProjectList();
     renderTaskList();

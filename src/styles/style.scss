@@ -48,8 +48,11 @@ $footer-height: 0px;
   background-color: $accent-color;
   color: white;
 }
-.hidden {
-  display: none;
+.hidden { display: none; }
+.black { color: black; }
+.white { color: white; }
+.colorize-white {
+  filter: brightness(0) invert(1);
 }
 input {
   text-overflow: ellipsis;
@@ -134,12 +137,20 @@ body {
         font-size: 2rem;
       }
       li {
-        img {
-          height: 2rem;
-          margin-right: 0.9rem;
-
+        span {
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+        .heading-icon_img {
+          height: 1.2rem;
+          
+          margin-inline: 0.9rem;
           transform: scale(1.9);
         }
+        .remove_project:hover {
+          cursor: pointer;
+        }
+        
         display: flex;
         justify-content: space-between;
 
