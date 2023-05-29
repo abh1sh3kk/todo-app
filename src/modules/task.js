@@ -8,7 +8,7 @@ export default class Task {
     let taskRow = document.createElement("label");
 
     taskRow.innerHTML = `<div class="left-side">
-              <input type="checkbox" class="checkbox checkbox1"/>
+              <input type="checkbox" class="checkbox checkbox1" />
               <span class="theTask">${this.theTask}</span>
             </div>
             <div class="right-side">

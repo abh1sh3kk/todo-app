@@ -7,6 +7,8 @@ const initializeLocalStorage = () => {
   if (localStorage.getItem("taskData") != null) return;
 
   localStorage.setItem("taskData", JSON.stringify(allData));
+
+  // Load localStorage with my allData if it's empty
 };
 
 

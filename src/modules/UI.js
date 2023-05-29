@@ -39,10 +39,17 @@ const UI = (() => {
     if (TaskData.selectedProject.length < 1) return;
 
     let requiredProject = TaskData.data.find(
-      (value) => value.projectTitle == TaskData.selectedProject
+      (value) => value.projectTitle === TaskData.selectedProject
     );
 
     requiredProject.taskList.forEach(renderEachTask);
+
+    // if taskData is empty, we do nothing
+    // if the selected project have no tasks, we do nothing
+    // Now, as the task data is not empty and selected projects don't have 0 tasks 
+    // we first filter out required project object in taskData, 
+    // After finding out the object I select the taskList and render each one with renderEachTask
+    // RenderEachTask takes task object and render that task object
   };
 
 
@@ -58,13 +65,13 @@ const UI = (() => {
 
     if (TaskData.isEmpty()) return ;
 
-
     let projectArray = TaskData.data.map((project) => project.projectTitle);
     projectArray.forEach(renderEachProject);
 
-    if (TaskData.isEmpty()){
-      
-    }
+    // clear existing projects and start the process
+    // now, if taskdata is already empty, do nothing
+    // else, find project array, and render each one.. 
+    
   };
 
 
@@ -76,6 +83,9 @@ const UI = (() => {
   const renderEachProject = (item) => {
     let newProject = new Project(item);
     customProjectList.appendChild(newProject.createOneProject());
+
+    // create a new project object
+    // select the list and append the project (by creating appendible node)
   };
 
 
@@ -365,4 +375,5 @@ const UI = (() => {
 
     activateEventListeners();
   })();
+  
 })();

@@ -51,6 +51,7 @@ let taskData = [
     ],
   },
 ];
+
 let taskDataNew = {
   college: {
     projectTitle: "Web Development",
