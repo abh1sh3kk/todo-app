@@ -81,6 +81,7 @@ const taskSwitcher = (() => {
         //   })
         // crossBtn.classList.add('hidden');
     };
+
     const showCrossButton = () => {
         console.log("show cross button");
         // let crossBtn = document.querySelectorAll(".remove");
@@ -172,4 +173,5 @@ const taskSwitcher = (() => {
             handleSwitchingClick(e);
         });
     })();
+
 })();

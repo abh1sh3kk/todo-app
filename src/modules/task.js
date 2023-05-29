@@ -1,13 +1,15 @@
 export default class Task {
-  constructor(theTask, isCompleted = "false", theDate = "No Date") {
-    this.theTask = theTask;
-    this.isCompleted = isCompleted;
-    this.theDate = theDate;
-  }
-  createOneTask() {
-    let taskRow = document.createElement("label");
+  
+    constructor(theTask, isCompleted = "false", theDate = "No Date") {
+        this.theTask = theTask;
+        this.isCompleted = isCompleted;
+        this.theDate = theDate;
+    }
 
-    taskRow.innerHTML = `<div class="left-side">
+    createOneTask() {
+        let taskRow = document.createElement("label");
+
+        taskRow.innerHTML = `<div class="left-side">
               <input type="checkbox" class="checkbox checkbox1" />
               <span class="theTask">${this.theTask}</span>
             </div>
@@ -15,8 +17,8 @@ export default class Task {
               <span class="date">${this.theDate}</span>
               <span class="remove">✕</span>
             </div>`;
-    return taskRow;
-  }
+        return taskRow;
+    }
 }
 // let leftSide = document.createElement("div");
 // leftSide.classList.add("left-side");
